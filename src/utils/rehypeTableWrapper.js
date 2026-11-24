@@ -1,14 +1,8 @@
 /**
- * Rehype plugin that wraps each table in a focusable, horizontally scrollable
- * `div.table-wrapper`, so wide tables scroll inside the post on small screens
- * instead of widening the page. `tabindex="0"` lets keyboard users scroll it,
- * and `role="region"` with an `aria-label` makes the focus stop meaningful to
- * screen readers. An outer `div.table-block` carries the numbered block label
- * ("table 1", "table 2", ...), outside the scroller so it is never clipped.
- *
- * Options: `{ label }`, the accessible name of the region.
- *
- * Tables inside `<ResponsiveTable>` (MDX) are skipped: it has its own wrapper.
+ * Rehype plugin that wraps each table in a focusable scrolling region
+ * (`div.table-wrapper`), inside a `div.table-block` that carries the numbered
+ * label outside the scroller so it is never clipped. Options: `{ label }`, the
+ * region's accessible name. Tables inside `<ResponsiveTable>` are skipped.
  */
 export const rehypeTableWrapper =
   (options = {}) =>

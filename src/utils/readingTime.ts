@@ -28,12 +28,7 @@ function stripEsmOutsideFences(body: string): string {
   return kept.join("\n");
 }
 
-/**
- * Minutes to read a Markdown/MDX body: whitespace-separated tokens (code
- * included) at 200 words per minute, rounded up, never below 1. Top-level MDX
- * import/export lines outside code fences are not prose and are dropped.
- * Build time only.
- */
+/** Minutes to read a Markdown/MDX body at 200 wpm, rounded up, at least 1. */
 export function readingTime(body?: string): number {
   const text = stripEsmOutsideFences(body ?? "");
   const words = text.split(/\s+/).filter(Boolean).length;

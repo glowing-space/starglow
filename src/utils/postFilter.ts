@@ -9,17 +9,9 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 /**
- * Determines whether a post is eligible to be listed/rendered.
- *
- * - In dev, shows everything (drafts and scheduled posts) to make authoring
- *   easier
- * - In production, excludes drafts, then excludes posts whose `pubDatetime`
- *   falls on a later calendar day than the build date, both read in the site
- *   (or per-post) timezone
- *
- * Publishing is day-granular by design: a post becomes visible on its
- * `pubDatetime` day, not at a time of day. `Datetime.astro` uses the same
- * timezone, so the byline shows that day unless a later `modDatetime` is set.
+ * Whether a post is listed and rendered. Dev shows everything; production
+ * drops drafts and posts whose `pubDatetime` day (in the post's or site's
+ * timezone) is after the build date. Publishing is day-granular by design.
  */
 export function postFilter({ data }: CollectionEntry<"posts">) {
   if (import.meta.env.DEV) return true;

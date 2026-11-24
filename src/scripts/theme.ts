@@ -10,7 +10,7 @@ function getPreferredTheme(): string {
     : LIGHT;
 }
 
-// Reuse the value already set by the inline FOUC-prevention script if available.
+// Set by the inline script in Layout.astro.
 let themeValue: string =
   (window as unknown as { __theme?: { value: string } }).__theme?.value ??
   getPreferredTheme();
@@ -28,8 +28,7 @@ function reflect(): void {
     .querySelector("#theme-btn")
     ?.setAttribute("aria-pressed", String(themeValue === DARK));
 
-  // Fill <meta name="theme-color"> with the computed background colour so
-  // Android's browser chrome matches the page background.
+  // Android's browser chrome follows theme-color.
   const bg = window.getComputedStyle(document.body).backgroundColor;
   document
     .querySelector("meta[name='theme-color']")
@@ -46,11 +45,9 @@ function setup(): void {
 
 setup();
 
-// Re-run after View Transitions navigation.
 document.addEventListener("astro:after-swap", setup);
 
-// Carry the theme-color value across View Transitions to prevent the
-// Android navigation bar from flashing during page transitions.
+// Carries theme-color across navigations, or Android's bar flashes.
 document.addEventListener("astro:before-swap", event => {
   const color = document
     .querySelector("meta[name='theme-color']")
@@ -62,7 +59,6 @@ document.addEventListener("astro:before-swap", event => {
   }
 });
 
-// Sync with OS-level dark/light preference changes.
 window
   .matchMedia("(prefers-color-scheme: dark)")
   .addEventListener("change", ({ matches }) => {

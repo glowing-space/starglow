@@ -1,9 +1,4 @@
-/**
- * Structured data (JSON-LD) builders.
- *
- * Every builder takes explicit values from the page that renders them, and
- * `compact` drops what is empty, so a field with no real data never appears.
- */
+/** JSON-LD builders. Values come from the rendering page; empty ones are dropped. */
 
 type JsonLdValue = string | number | boolean | JsonLdObject | JsonLdValue[];
 type JsonLdObject = { [key: string]: JsonLdValue | undefined };

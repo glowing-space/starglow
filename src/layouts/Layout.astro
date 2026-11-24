@@ -85,7 +85,6 @@ const PREVIEW_BOOT = `(function () {
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Font -->
     <Font
       cssVariable="--font-inter"
       preload={[{ weight: 400, style: "normal" }]}
@@ -93,14 +92,12 @@ const PREVIEW_BOOT = `(function () {
     <Font cssVariable="--font-jetbrains-mono" />
     <Font cssVariable="--font-wordmark" preload />
 
-    <!-- Primary meta -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={site.author} />
     <link rel="sitemap" href={getAssetPath("sitemap-index.xml")} />
 
-    <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.title} />
     <meta property="og:title" content={title} />
@@ -120,7 +117,6 @@ const PREVIEW_BOOT = `(function () {
     }
     <meta property="og:image:alt" content={ogImageAlt} />
 
-    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
@@ -128,7 +124,6 @@ const PREVIEW_BOOT = `(function () {
     <meta name="twitter:image" content={socialImageURL} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
-    <!-- RSS autodiscovery -->
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -136,10 +131,9 @@ const PREVIEW_BOOT = `(function () {
       href={new URL(rssHref, Astro.site)}
     />
 
-    <!-- Filled at runtime by theme.ts to match the current background colour -->
+    <!-- Filled at runtime by theme.ts -->
     <meta name="theme-color" content="" />
 
-    <!-- Extra head content injected by child layouts (e.g. JSON-LD, article meta) -->
     <slot name="head" />
 
     {
@@ -151,10 +145,7 @@ const PREVIEW_BOOT = `(function () {
       )
     }
 
-    <!--
-      Inline FOUC-prevention script: sets data-theme on <html> before
-      the browser paints. Runs synchronously, no defer/async.
-    -->
+    <!-- Sets data-theme before first paint: must stay inline and synchronous. -->
     <script is:inline>
       (function () {
         const stored = localStorage.getItem("theme");

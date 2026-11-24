@@ -20,8 +20,7 @@ const t = useTranslations(Astro.currentLocale ?? config.site.lang);
 
 <script is:inline data-astro-rerun>
   function attachCopyButtons() {
-    // Every visible string and announcement comes from the status element's
-    // data attributes (rendered from the i18n strings at build time).
+    // Strings come from the status element's data attributes (i18n).
     const status = document.querySelector("[data-copy-label]");
     if (!status) return;
     const labels = status.dataset;
@@ -99,8 +98,7 @@ const t = useTranslations(Astro.currentLocale ?? config.site.lang);
     let lastFocused = null;
     let removeDragListeners = null;
 
-    // Defer attribute mutations so they don't push the LCP timestamp.
-    // Event listeners below use delegation and don't need the attributes to exist yet.
+    // Deferred so the attribute writes don't push the LCP timestamp.
     requestAnimationFrame(() => {
       const images = Array.from(article.querySelectorAll("img"));
       for (const image of images) {
@@ -250,7 +248,7 @@ const t = useTranslations(Astro.currentLocale ?? config.site.lang);
               Math.max(1, initialScale * (dist / initialDist))
             );
 
-            // Zoom to the geometric center of the two fingers
+            // Zoom to the midpoint of the two fingers.
             const midX = (t[0].clientX + t[1].clientX) / 2;
             const midY = (t[0].clientY + t[1].clientY) / 2;
             const ox = overlay.clientWidth / 2;
@@ -313,7 +311,7 @@ const t = useTranslations(Astro.currentLocale ?? config.site.lang);
             resetTransform();
           } else {
             image.setAttribute("data-zoom", "in");
-            // Zoom to cursor: adjust translate so the point under cursor stays fixed
+            // Keep the point under the cursor fixed.
             const ox = overlay.clientWidth / 2;
             const oy = overlay.clientHeight / 2;
             translateX =

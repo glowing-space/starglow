@@ -1,22 +1,12 @@
-// Finds the images of draft entries in dist/_astro, so a draft's image never
-// ships even though its page is not built.
+// Finds the images of draft entries in dist/_astro. Astro emits every image a
+// Markdown entry references, draft or not, so a draft's image would ship.
 //
-// Astro emits every image a Markdown entry references, draft or not. This
-// module resolves each relative asset a draft references (Markdown images, MDX
-// imports, `src`, `ogImage`) to its source file and lists the built files that
-// carry that file's bytes, plus their optimized variants. A source is
-// draft-only when a draft references it and no published entry (blog, notes,
-// projects or pages) references a file with the same bytes.
-//
-// Built files are matched on the full source file name and the content hash,
-// never on the stem alone. A file whose bytes equal anything under
-// `src/assets` (icons, fonts) is never touched, and only assets that live
-// inside the content tree are considered; an image a draft pulls in from
-// elsewhere is left alone, because it may be shared.
-//
-// Astro names a built asset after the first file it sees with that content, so
-// a draft and a published entry that use byte-identical images share one dist
-// file. That file is kept, with its optimized variants.
+// A source is draft-only when a draft references it and no published entry
+// references a file with the same bytes (Astro names a built asset after the
+// first file with that content, so identical images share one dist file).
+// Built files are matched on full source name and content hash, never the stem
+// alone. Only assets inside the content tree are considered, and nothing whose
+// bytes match a file under `src/assets`.
 //
 // Used by the build (`--prune`, before the search index) and by verify-dist,
 // which fails on any file this returns.

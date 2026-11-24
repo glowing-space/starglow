@@ -2,17 +2,10 @@
 //
 // Run: ./dev.sh pnpm verify          (node scripts/verify-dist.ts [distDir])
 //
-// Output contract: every check run is one rule over one target (a page, a file
-// or the whole build), and its name is the kebab-case id below. On success one
-// line, `verify-dist: all {n} checks passed.`, and exit 0. On failure one
-// `verify-dist: FAIL {check}: {file}: {message}` line per problem (`{file}:` is
-// left out for a global one), then `verify-dist: {k} of {n} checks failed.`
-// and exit 1. A missing dist or origin prints `verify-dist: FAIL setup: ...`.
-//
-// Checks: source-entries, text-files, search-bundle, search-page, sitemap,
-// robots, draft-assets, palettes, og-images, routes, posts-route, type-scale,
-// and per page page-head, share-row, json-ld, headings, image-alt,
-// third-parties, asset-urls, connectors (asset-urls also runs per stylesheet).
+// Output: `verify-dist: all {n} checks passed.` and exit 0, or one
+// `verify-dist: FAIL {check}: {file}: {message}` line per problem, then
+// `verify-dist: {k} of {n} checks failed.` and exit 1. A missing dist or
+// origin prints `verify-dist: FAIL setup: ...`.
 //
 // Zero dependencies: `node:` builtins only and erasable TypeScript only, so
 // Node >= 22.18 strips the types natively. HTML is checked with regular
@@ -22,9 +15,6 @@
 // the build's own robots.txt. No host is written in this file.
 //
 // The demo-marker rule assumes no published content contains that literal.
-//
-// Each check is a small function that reports through `fail(file, message)`,
-// so later phases add sections without restructuring.
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join, relative, sep } from "node:path";
 import { gunzipSync } from "node:zlib";

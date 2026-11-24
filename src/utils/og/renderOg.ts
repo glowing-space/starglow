@@ -7,7 +7,7 @@ import { ogColors } from "@/utils/ogTheme";
 import { codePointCoverage } from "@/utils/og/fontCoverage";
 
 // The page type scale is laid out at half size and doubled, so the image keeps
-// the same proportions as the site (UI-SPEC "OG Image Contract").
+// the same proportions as the site.
 const OG_SCALE = 2;
 const TOKENS = {
   label: 14,
@@ -48,10 +48,9 @@ type OgFont = {
 type OgFonts = { fonts: OgFont[]; covers: (codePoint: number) => boolean };
 
 /**
- * Fonts are read from the vendored files: no network at build. satori
- * takes one file per family name and weight, so the Cyrillic subset is its own
- * family, listed after Inter in `FONT_FAMILY`: Latin characters come from the
- * first, Cyrillic ones from the second.
+ * Vendored fonts, no network at build. satori takes one file per family and
+ * weight, so the Cyrillic subset is its own family, listed after Inter in
+ * `FONT_FAMILY`.
  */
 const FONT_FILES: [string, string, 400 | 600][] = [
   ["Inter", "inter-latin-400-normal.woff", 400],

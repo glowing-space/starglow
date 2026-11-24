@@ -2,12 +2,9 @@ const warned = new Set<string>();
 const valid = new Map<string, boolean>();
 
 /**
- * Returns `zone` if it is an IANA timezone this runtime recognises, otherwise
- * falls back to UTC and warns once per bad value.
- *
- * `dayjs().tz()` throws a `RangeError` on an unrecognised name, which would abort
- * the whole build from whichever component formatted the date first. A typo in
- * `site.timezone` should degrade to UTC, not take the site down.
+ * `zone` if this runtime knows it, else UTC with one warning per bad value.
+ * `dayjs().tz()` throws a `RangeError` on an unknown name, which would abort
+ * the build.
  */
 export function resolveTimezone(zone: string | undefined): string {
   if (!zone) return "UTC";

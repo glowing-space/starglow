@@ -3,18 +3,11 @@ import { execFileSync } from "node:child_process";
 const cache = new Map<string, Date>();
 
 /**
- * Author date of the last commit that touched `filePath`, or `undefined`.
- * The author date survives amend, rebase and cherry-pick; the committer date
- * does not.
- *
- * Never throws: git missing, not a repository or an untracked file all return
- * `undefined`, so the build never depends on git. The path goes to git as one
- * argument after `--` (no shell, no option parsing), so a crafted filename
- * cannot inject a command or an option.
- *
- * Only found dates are memoised. A file that was untracked when first asked
- * (dev server running while the note is still being written) is looked up again
- * once it is committed.
+ * Author date of the last commit that touched `filePath` (it survives amend and
+ * rebase, the committer date does not), or `undefined`. Never throws, so the
+ * build never depends on git. The path is passed after `--` without a shell,
+ * so a crafted filename cannot inject a command or option. Only found dates are
+ * memoised, so a file committed while the dev server runs is picked up.
  */
 export function getGitLastModified(
   filePath: string | undefined

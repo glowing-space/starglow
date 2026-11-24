@@ -28,21 +28,12 @@ function getPostSlugPath(id: string, filePath: string | undefined): string {
     : String(slug);
 }
 
-/**
- * Returns the slug-only path for use as a route param in `getStaticPaths`.
- * No base prefix, no locale — Astro handles those at a higher level.
- * e.g. `/2026/my-post`
- */
+/** Route param for `getStaticPaths`, without base or locale: `/2026/my-post`. */
 export function getPostSlug(id: string, filePath: string | undefined): string {
   return `/${getPostSlugPath(id, filePath)}`;
 }
 
-/**
- * Returns a fully navigable URL for use in `<a href>` and RSS links.
- * Applies both locale routing and the configured Astro base via
- * `getRelativeLocaleUrl`.
- * e.g. `/blog/2026/my-post` or `/en/blog/2026/my-post`
- */
+/** Link URL with locale and base applied: `/blog/2026/my-post`. */
 export function getPostUrl(
   id: string,
   filePath: string | undefined,

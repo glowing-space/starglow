@@ -6,13 +6,7 @@ type Tag = {
   tagName: string;
 };
 
-/**
- * Builds a de-duplicated, sorted tag list from content items.
- *
- * - Items are already visible: they come from `getAllItems()` and friends
- * - `tag` is the slug used in URLs; `tagName` is the original label for display
- * - Uniqueness is based on the slug (so differently-cased labels collapse)
- */
+/** Sorted tags of already-visible items, unique by slug (`tag`); `tagName` is the label. */
 export function getUniqueTags(items: ContentItem[]) {
   const tags: Tag[] = items
     .flatMap(item => item.tags)

@@ -29,8 +29,7 @@ links() {
     "$LYCHEE_IMAGE" --root-dir /repo/dist 'dist/**/*.html'
 }
 
-# Structural (actionlint) and security (zizmor) audit of .github/. Runs both
-# tools even when the first one fails, and fails when either did.
+# actionlint and zizmor over .github/. Both always run; fails if either did.
 workflows() {
   local status=0
   docker run --rm -u "$HOST_UID:$HOST_GID" -v "$PROJECT_DIR:/repo:ro" -w /repo \
@@ -40,10 +39,9 @@ workflows() {
   return "$status"
 }
 
-# Scaffolds a draft post, note or project from templates/. Runs on the host
-# (plain bash, no container) and needs GNU date. The folder year and the post date come from one
-# clock read, formatted in the site timezone, so the folder year always matches
-# the check in src/utils/postEntryId.ts.
+# Scaffolds a draft from templates/. Runs on the host and needs GNU date. Folder
+# year and post date come from one clock read in the site timezone, so they
+# always agree with the check in src/utils/postEntryId.ts.
 new_content() {
   local usage='Usage: ./dev.sh new <post|note|project> <slug>'
   local type="${1:-}" slug="${2:-}"

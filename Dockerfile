@@ -6,7 +6,7 @@ ENV CI=true \
     COREPACK_HOME=/opt/corepack \
     COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
-# git: Phase 2 reads git dates inside the container, which runs as an arbitrary host UID.
+# git: the build reads git dates in the container, which runs as an arbitrary host UID.
 RUN apt-get update \
  && apt-get install -y --no-install-recommends git \
  && rm -rf /var/lib/apt/lists/* \

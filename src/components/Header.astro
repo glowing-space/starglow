@@ -12,8 +12,7 @@ const { site, features } = config;
 const locale = Astro.currentLocale ?? config.site.lang;
 const t = useTranslations(locale);
 
-// Strip the base prefix so isActive comparisons work regardless of deploy subdirectory.
-// e.g. with base "/docs": "/docs/blog/slug" → "/blog/slug"
+// Without the base prefix, so isActive works under any deploy subdirectory.
 const relativePath = stripBase(Astro.url.pathname);
 const pathWithoutTrailingSlash =
   relativePath.endsWith("/") && relativePath !== "/"

@@ -1,15 +1,8 @@
 /**
- * Rehype plugin for the labelled blocks of the article body. Runs after Shiki
- * and rehype-callouts:
- *
- * - every highlighted `pre.astro-code` is wrapped in `div.code-block` with a
- *   `span.block-label` naming its language (ArticleEnhancements adds the copy
- *   button to the same wrapper);
- * - a callout whose title is the default one (the capitalised type) gets
- *   `data-default-title`, so CSS can show the type as the block label and keep
- *   the title for screen readers only.
- *
- * Labels are presentational and kept out of the search index.
+ * Rehype plugin for labelled blocks. Must run after Shiki and rehype-callouts.
+ * Wraps each `pre.astro-code` in `div.code-block` with a language label, and
+ * marks callouts with the default title (`data-default-title`) so CSS can
+ * show the type as the label. Labels are kept out of the search index.
  */
 
 type HastNode = {

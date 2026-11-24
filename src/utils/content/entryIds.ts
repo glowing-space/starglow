@@ -7,12 +7,8 @@ const NOTE_ENTRY_PATTERN = /^(\d{4})\/([a-z0-9]+(?:-[a-z0-9]+)*)\.mdx?$/;
 const NOTE_ID_PATTERN = /^(\d{4})\/([a-z0-9]+(?:-[a-z0-9]+)*)$/;
 
 /**
- * Builds the content-collection id of a note: `<year>/<slug>`.
- *
- * `entry` is the file path relative to `src/content/notes/`. Notes must live in
- * a year folder and have a lowercase ASCII kebab-case filename. The id comes
- * from the path alone and never reads frontmatter, so frontmatter cannot change
- * a note URL.
+ * Content id of a note, `<year>/<slug>`, from its path under `src/content/notes/`
+ * alone, so frontmatter cannot change a note URL.
  */
 export function noteEntryId(entry: string): string {
   const match = NOTE_ENTRY_PATTERN.exec(entry);
@@ -39,12 +35,8 @@ export const PROJECT_PATH = "src/content/projects";
 const PROJECT_ENTRY_PATTERN = /^([a-z0-9]+(?:-[a-z0-9]+)*)\.md$/;
 
 /**
- * Builds the content-collection id of a project: the filename slug.
- *
- * `entry` is the file path relative to `src/content/projects/`. Projects live
- * at the top level as lowercase ASCII kebab-case `.md` files, so every project
- * (experiments included) is served at a flat `/projects/<slug>/`. The id comes
- * from the path alone and never reads frontmatter.
+ * Content id of a project: the filename slug of a top-level file under
+ * `src/content/projects/`, from the path alone.
  */
 export function projectEntryId(entry: string): string {
   const match = PROJECT_ENTRY_PATTERN.exec(entry);

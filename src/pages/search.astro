@@ -13,7 +13,6 @@ import config from "@/config";
 
 const locale = Astro.currentLocale ?? config.site.lang;
 
-// Redirect to 404 page if `search` feature is not enabled
 const notFoundUrl = getRelativeLocaleUrl(locale, "404");
 if (config.features.search !== "pagefind" && notFoundUrl) {
   return Astro.rewrite(notFoundUrl);
@@ -153,7 +152,6 @@ const emptyParts = splitTokens(t.search.emptyBrowse);
       pageFindSearch.append(message);
     };
 
-    // Swap the search UI for the nothing-to-search sentence.
     const showEmpty = () => {
       const template = pageFindSearch.querySelector<HTMLTemplateElement>(
         "template[data-search-empty-template]"
@@ -189,7 +187,6 @@ const emptyParts = splitTokens(t.search.emptyBrowse);
         // Fail early and visibly when the index bundle cannot be loaded.
         await import(/* @vite-ignore */ `${bundlePath}pagefind.js`);
 
-        // Init pagefind ui
         const search = new PagefindUI({
           element: "#pagefind-search",
           bundlePath,
@@ -198,8 +195,8 @@ const emptyParts = splitTokens(t.search.emptyBrowse);
           autofocus: true,
           translations: { error_search: pageFindSearch.dataset.errorSearch },
           processTerm: function (term: string) {
-            params.set("q", term); // Update the `q` parameter in the URL
-            history.replaceState(history.state, "", "?" + params.toString()); // Push the new URL without reloading
+            params.set("q", term);
+            history.replaceState(history.state, "", "?" + params.toString());
 
             const backUrl =
               pageFindSearch?.dataset?.backurl ?? window.location.pathname;
@@ -212,13 +209,11 @@ const emptyParts = splitTokens(t.search.emptyBrowse);
           },
         });
 
-        // If search param exists (eg: search?q=astro), trigger search
         const query = params.get("q");
         if (query) {
           search.triggerSearch(query);
         }
 
-        // Reset search param if search input is cleared
         const searchInput = document.querySelector(
           ".pagefind-ui__search-input"
         );
@@ -242,7 +237,6 @@ const emptyParts = splitTokens(t.search.emptyBrowse);
   document.addEventListener("astro:after-swap", () => {
     const pagefindSearch = document.querySelector("#pagefind-search");
 
-    // if pagefind search form already exists, don't initialize search component
     if (pagefindSearch && pagefindSearch.querySelector("form")) return;
 
     initSearch();

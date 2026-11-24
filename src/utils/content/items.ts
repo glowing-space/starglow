@@ -73,11 +73,7 @@ export function noteToItem(note: CollectionEntry<"notes">): ContentItem {
   };
 }
 
-/**
- * Sort time: the item's date, else 00:00 on 1 January of its folder year in
- * the site timezone (a note without `updated` or a git date sorts by
- * its folder year).
- */
+/** Sort time: the item's date, else 1 January of its folder year (site timezone). */
 export function effectiveTime(item: ContentItem): number {
   if (item.date) return item.date.getTime();
   return dayjs

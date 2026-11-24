@@ -9,14 +9,9 @@ dayjs.extend(timezone);
 const ENTRY_PATTERN = /^(\d{4})\/([a-z0-9]+(?:-[a-z0-9]+)*)\.mdx?$/;
 
 /**
- * Builds the content-collection id of a post: `<year>/<slug>`.
- *
- * `entry` is the file path relative to `src/content/blog/`. Posts must live in
- * a year folder and have a lowercase ASCII kebab-case filename. The folder year
- * must equal the year of `pubDatetime` read in the post's own timezone (or the
- * site timezone), so the URL year never contradicts the published date.
- *
- * A missing or unparsable `pubDatetime` is left to the schema to report.
+ * Content id of a post, `<year>/<slug>`, from its path under `src/content/blog/`.
+ * The folder year must equal the `pubDatetime` year in the post's (or site's)
+ * timezone. A missing or bad `pubDatetime` is left to the schema to report.
  */
 export function postEntryId(
   entry: string,

@@ -1,20 +1,15 @@
 // Builds the Pagefind search index over the built site in dist/.
 //
-// Indexed: post, note and project detail pages only (the glob below). Home,
-// listings, pagination, tags, about, contact, search and 404 are never
-// indexed, so a result is always a piece of content.
+// Only post, note and project detail pages are indexed (the glob below).
 //
-// This uses the Node API of the installed `pagefind` package instead of the
-// `pagefind --site dist` CLI. When the glob matches nothing, which is the real
-// launch state with no published content, the CLI exits 1 and fails the build,
-// while the Node API writes a valid bundle with zero pages.
+// Uses the Node API, not the `pagefind --site dist` CLI: with no published
+// content the glob matches nothing and the CLI exits 1, while the API writes a
+// valid empty bundle.
 //
-// `astro build` copies `public/pagefind` from the previous build into `dist/`
-// and Pagefind never deletes old files, so `dist/pagefind` is removed first.
-// Otherwise an earlier index, possibly with drafts, would ship. `public/pagefind`
-// is then synced in place (files copied over, stale files removed) so a running
-// `astro dev` keeps watching the same folder and serves the new index at once;
-// deleting and re-creating the folder made the dev server miss it.
+// `astro build` copies the previous `public/pagefind` into `dist/` and Pagefind
+// never deletes old files, so `dist/pagefind` is removed first, or a stale
+// index (possibly with drafts) would ship. `public/pagefind` is synced in place
+// rather than re-created, or a running `astro dev` stops seeing it.
 //
 // Run: node scripts/build-search-index.ts (after `astro build`).
 import { cpSync, readdirSync, rmSync, rmdirSync } from "node:fs";

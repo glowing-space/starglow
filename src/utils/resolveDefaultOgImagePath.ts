@@ -11,15 +11,9 @@ function existsInPublic(filename: string): boolean {
 }
 
 /**
- * Resolves the absolute OG image path used for pages/posts.
- *
- * Security note: `site.ogImage` must be a single filename under `public/` to avoid
- * path traversal or referencing arbitrary files.
- *
- * Behavior:
- * - When `features.dynamicOgImage` is enabled, prefers `public/{site.ogImage}` when present,
- *   otherwise falls back to the generated `/og.png`.
- * - When disabled, requires `public/{site.ogImage}` to exist.
+ * Default OG image path: `public/{site.ogImage}` when present, else the
+ * generated `/og.png` (which requires `dynamicOgImage`). `site.ogImage` must be
+ * a single filename, to rule out path traversal.
  */
 export function resolveDefaultOgImagePath(
   config: ResolvedStarglowConfig

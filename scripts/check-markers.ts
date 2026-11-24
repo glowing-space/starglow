@@ -5,22 +5,14 @@
 // Zero dependencies: `node:` builtins only and erasable TypeScript only, so
 // Node >= 22.18 strips the types natively.
 //
-// Warn mode (default) prints the list and exits 0, so local builds and pull
-// requests only warn. Strict mode (`--strict` or MARKERS_STRICT=true) exits 1
-// while any marker remains, so a deploy cannot publish an unfilled placeholder.
-// No `.env` file is read: a local `.env` can never make a local build strict.
+// Warn mode (default) exits 0. Strict mode (`--strict` or MARKERS_STRICT=true)
+// exits 1 while any marker remains, so a deploy cannot publish one. No `.env`
+// is read, so a local `.env` can never make a local build strict.
 //
-// Scope: src/ (.md, .mdx, .ts, .astro, .json, .yaml, .yml) and
-// starglow.config.ts. Draft content entries, `_` entries the loaders never
-// build, fenced code blocks and inline code spans are skipped, so documentation
-// that shows the syntax is not a marker. A marker may wrap across a soft line
-// break and may contain a single `]`; a backslash-escaped backtick does not
-// open a code span. src/utils/rehypeTodoMarkers.ts uses the same marker shape.
-//
-// Backstop: the check also scans the built dist/**/*.html (outside `pre` and
-// `code`) for a literal `[[TODO` the source scan did not report, since dist/ is
-// what would actually ship. Strict mode fails on it (and when dist/ is missing
-// or has no HTML); warn mode only warns.
+// Drafts, `_` entries and code (fenced and inline) are skipped, so docs that
+// show the syntax are not markers. src/utils/rehypeTodoMarkers.ts uses the same
+// marker shape. The built dist/**/*.html is scanned too, as a backstop; strict
+// mode also fails when dist/ is missing or has no HTML.
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, sep } from "node:path";
 
