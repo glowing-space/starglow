@@ -546,10 +546,6 @@ body {
   .site-nav ul {
     column-gap: var(--s4);
   }
-
-  .site-tools kbd {
-    display: none;
-  }
 }
 
 /* ===== Section heads ===== */
