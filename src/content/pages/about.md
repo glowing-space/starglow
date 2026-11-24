@@ -9,7 +9,7 @@ Starglow is an open-source Astro theme for developers who want a quiet, fast per
 
 - A blog, short notes, projects and a lab page for experiments.
 - Full-text search, RSS, a sitemap and generated social images.
-- Light and dark themes in Catppuccin Latte and Mocha.
+- Light and dark palettes, chosen separately, all checked for WCAG AA contrast.
 - Build checks that catch broken links, missing alt text and leftover placeholders.
 
 ## Credits

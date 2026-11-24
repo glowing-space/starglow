@@ -11,7 +11,7 @@ Starglow is an Astro 7 + Tailwind 4 static theme. Read this before changing it.
 
 - Config: `starglow.config.ts` (user), types and docs in `src/types/config.ts`, defaults resolved in `src/config.ts`.
 - Content: `src/content/{blog,notes,projects,pages}`; schemas in `src/content.config.ts` (strict).
-- Theme styles: `src/styles/site-theme.css`. `theme.css`, `typography.css` and `global.css` stay close to upstream.
+- Palettes: `src/palettes.ts` (the only place colours live). Theme styles: `src/styles/site-theme.css`. `theme.css`, `typography.css` and `global.css` stay close to upstream.
 - User slots, never overwritten: `src/custom/*.astro`.
 - Build assertions: `scripts/verify-dist.ts`; placeholder check: `scripts/check-markers.ts`.
 

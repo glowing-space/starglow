@@ -10,7 +10,7 @@
 // and exit 1. A missing dist or origin prints `verify-dist: FAIL setup: ...`.
 //
 // Checks: source-entries, text-files, search-bundle, search-page, sitemap,
-// robots, draft-assets, og-palette, og-images, routes, posts-route, type-scale,
+// robots, draft-assets, palettes, og-images, routes, posts-route, type-scale,
 // and per page page-head, share-row, json-ld, headings, image-alt,
 // third-parties, asset-urls, connectors (asset-urls also runs per stylesheet).
 //
@@ -1242,42 +1242,108 @@ function checkTypeScale(): void {
   }
 }
 
-// --- Open Graph images ------------------------------------------------------
+// --- Palettes ---------------------------------------------------------------
 
-/** Kebab-case an ogTheme key: mutedForeground -> muted-foreground. */
-function cssVariableOf(key: string): string {
-  return `--${key.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}`;
+const PALETTE_TEXT = [
+  "--foreground",
+  "--muted-foreground",
+  "--accent",
+  "--code-comment",
+  "--red",
+  "--orange",
+  "--yellow",
+  "--green",
+  "--cyan",
+  "--blue",
+  "--purple",
+];
+const PALETTE_SURFACES = ["--background", "--mantle", "--crust", "--muted"];
+const AA = 4.5;
+
+function luminance(hex: string): number {
+  const value = hex.replace("#", "");
+  const full =
+    value.length === 3
+      ? [...value].map(c => c + c).join("")
+      : value.slice(0, 6);
+  const channel = (offset: number): number => {
+    const c = parseInt(full.slice(offset, offset + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * channel(0) + 0.7152 * channel(2) + 0.0722 * channel(4);
 }
 
-const OG_PALETTE_SIZE = 5;
+function contrast(a: string, b: string): number {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return ((hi ?? 0) + 0.05) / ((lo ?? 0) + 0.05);
+}
 
-/** The OG palette must equal the dark block of site-theme.css. */
-function checkOgPalette(): void {
-  const theme = readFileSync("src/utils/ogTheme.ts", "utf8");
-  const css = readFileSync("src/styles/site-theme.css", "utf8");
-  const dark = /\[data-theme="dark"\]\s*\{([^}]*)\}/.exec(css)?.[1] ?? "";
-  const entries = [
-    ...theme.matchAll(/(\w+)\s*:\s*["'](#[0-9a-fA-F]{3,8})["']/g),
+/**
+ * Every palette the site ships (the inline style in index.html, custom ones
+ * included) must meet WCAG AA: each text token on each surface, and
+ * accent-foreground on accent. The <html> data-dark / data-light attributes
+ * must name a shipped palette.
+ */
+function checkPalettes(): void {
+  const file = join(DIST, "index.html");
+  if (!existsSync(file)) return fail("index.html", "palette: missing");
+  const html = readFileSync(file, "utf8");
+  const rules = [
+    ...html.matchAll(/html\[data-(dark|light)="([\w-]+)"\][^{]*\{([^}]*)\}/g),
   ];
-  // A reformatted file must not make the comparison vanish.
-  if (entries.length !== OG_PALETTE_SIZE)
-    fail(
-      "",
-      `palette: ogTheme.ts holds ${entries.length} color entries, expected ${OG_PALETTE_SIZE}`
+  if (rules.length === 0)
+    return fail("index.html", "palette: no palette rules");
+  const shipped = new Set(rules.map(([, mode, name]) => `${mode}:${name}`));
+  for (const mode of ["dark", "light"]) {
+    const name = new RegExp(`<html[^>]*\\sdata-${mode}="([\\w-]+)"`).exec(
+      html
+    )?.[1];
+    if (!name || !shipped.has(`${mode}:${name}`))
+      fail(
+        "index.html",
+        `palette: data-${mode}="${name ?? ""}" is not shipped`
+      );
+  }
+  for (const [, mode, name, body] of rules) {
+    const vars = new Map(
+      [...(body ?? "").matchAll(/(--[\w-]+):(#[0-9a-fA-F]{3,8})/g)].map(
+        ([, key, value]) => [key ?? "", value ?? ""]
+      )
     );
-  for (const [, key, value] of entries) {
-    const variable = cssVariableOf(key ?? "");
-    const cssValue = new RegExp(
-      `${variable}:\\s*(#[0-9a-fA-F]{3,8})\\s*;`
-    ).exec(dark)?.[1];
-    if (cssValue?.toLowerCase() !== value?.toLowerCase()) {
+    const id = `${mode} palette "${name}"`;
+    for (const key of [
+      ...PALETTE_TEXT,
+      ...PALETTE_SURFACES,
+      "--accent-foreground",
+    ]) {
+      if (!vars.has(key)) fail("", `palette: ${id} has no ${key}`);
+    }
+    for (const text of PALETTE_TEXT) {
+      for (const surface of PALETTE_SURFACES) {
+        const ratio = contrast(
+          vars.get(text) ?? "#000",
+          vars.get(surface) ?? "#000"
+        );
+        if (ratio < AA)
+          fail(
+            "",
+            `palette: ${id} ${text} on ${surface} is ${ratio.toFixed(2)}:1, below ${AA}`
+          );
+      }
+    }
+    const onAccent = contrast(
+      vars.get("--accent-foreground") ?? "#000",
+      vars.get("--accent") ?? "#000"
+    );
+    if (onAccent < AA)
       fail(
         "",
-        `palette: ogTheme.${key} ${value} != site-theme.css ${variable} ${cssValue ?? "(missing)"}`
+        `palette: ${id} --accent-foreground on --accent is ${onAccent.toFixed(2)}:1`
       );
-    }
   }
 }
+
+// --- Open Graph images ------------------------------------------------------
 
 /** With dynamic OG on, every generated PNG must be a 1200x630 PNG. */
 function checkOgImages(files: string[]): void {
@@ -1339,7 +1405,7 @@ run("search-page", () => checkSearchPage(indexed));
 run("sitemap", () => checkSitemap(htmlFiles, entries, origin));
 run("robots", () => checkRobots(origin));
 run("draft-assets", () => checkDraftAssets());
-run("og-palette", () => checkOgPalette());
+run("palettes", () => checkPalettes());
 run("og-images", () => checkOgImages(files));
 run("routes", () => checkRoutes());
 run("posts-route", () => checkPostsRoute(files, origin));

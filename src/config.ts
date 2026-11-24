@@ -10,7 +10,9 @@ import type {
   ResolvedStarglowConfig,
   ResolvedSocialLink,
   SocialLink,
+  StarglowConfig,
 } from "./types/config";
+import { darkPalettes, lightPalettes } from "./palettes";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 
 // public/default-og.jpg is intentionally absent (upstream branding, deleted).
@@ -109,6 +111,25 @@ function resolveLinks(
   return resolved;
 }
 
+function resolvePalettes(appearance: StarglowConfig["appearance"]) {
+  const palettes = {
+    dark: { ...darkPalettes, ...appearance?.palettes?.dark },
+    light: { ...lightPalettes, ...appearance?.palettes?.light },
+  };
+  const palette = {
+    dark: appearance?.palette?.dark ?? "glowing",
+    light: appearance?.palette?.light ?? "glowing",
+  };
+  for (const mode of ["dark", "light"] as const) {
+    if (!(palette[mode] in palettes[mode])) {
+      throw new Error(
+        `[config] appearance.palette.${mode}: unknown palette "${palette[mode]}". Available: ${Object.keys(palettes[mode]).join(", ")}`
+      );
+    }
+  }
+  return { palette, palettes };
+}
+
 const PLACEHOLDER_MARKERS = ["[PLACEHOLDER]", "[[TODO", "[DEMO]"];
 
 /** Structured data must never carry placeholder text: empty means omitted. */
@@ -168,6 +189,8 @@ const config: ResolvedStarglowConfig = {
     ambient: userConfig.appearance?.ambient ?? "none",
     wordmarkGlow: userConfig.appearance?.wordmarkGlow ?? false,
     statusline: userConfig.appearance?.statusline ?? false,
+    preview: userConfig.appearance?.preview ?? false,
+    ...resolvePalettes(userConfig.appearance),
   },
   links: [],
   footer: {

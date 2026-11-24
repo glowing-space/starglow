@@ -63,6 +63,13 @@ export default defineStarglowConfig({
     wordmarkGlow: true,
     // Vim-style status bar on post and note pages.
     statusline: true,
+    // Colour palettes, chosen separately for dark and light mode. Built in:
+    // dark glowing | void | aurora | ember; light glowing | paper | petal |
+    // frost | sand. Add your own under `palettes` (see src/palettes.ts).
+    palette: { dark: "glowing", light: "glowing" },
+    // Floating panel to try palettes and effects live. For demos; turn it
+    // off on your own site.
+    preview: true,
   },
   // 88x31 footer badges. Configured socials below get one automatically.
   links: [

@@ -4,6 +4,8 @@ import { ClientRouter } from "astro:transitions";
 import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
 import config from "@/config";
+import { paletteCss } from "@/palettes";
+import PreviewPanel from "@/components/PreviewPanel.astro";
 import "@/styles/global.css";
 import CustomHead from "@/custom/Head.astro";
 import CustomBodyEnd from "@/custom/BodyEnd.astro";
@@ -36,16 +38,40 @@ const {
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
-const { ambient, wordmarkGlow } = config.appearance;
+const { ambient, wordmarkGlow, statusline, palette, palettes, preview } =
+  config.appearance;
+// Only the two configured palettes ship, unless the preview panel needs all.
+const paletteStyles = preview
+  ? paletteCss(palettes.dark, palettes.light)
+  : paletteCss(
+      { [palette.dark]: palettes.dark[palette.dark]! },
+      { [palette.light]: palettes.light[palette.light]! }
+    );
 const sourceBanner = site.sourceBanner ? `<!--\n${site.sourceBanner}\n-->` : "";
 const rssHref = getAssetPath("rss.xml");
+// Applies the preview panel's session overrides before the first paint.
+const PREVIEW_BOOT = `(function () {
+  try {
+    var s = JSON.parse(sessionStorage.getItem("starglow-preview") || "{}");
+    var r = document.documentElement;
+    ["dark", "light", "ambient"].forEach(function (k) {
+      if (typeof s[k] === "string") r.dataset[k] = s[k];
+    });
+    ["glow", "statusline"].forEach(function (k) {
+      if (typeof s[k] === "boolean") r.toggleAttribute("data-" + k, s[k]);
+    });
+  } catch (e) {}
+})();`;
 ---
 
 <!doctype html>
 <Fragment set:html={sourceBanner} />
 <html
   data-ambient={ambient}
+  data-dark={palette.dark}
+  data-light={palette.light}
   data-glow={wordmarkGlow ? "" : undefined}
+  data-statusline={statusline ? "" : undefined}
   dir={site.dir ?? "ltr"}
   lang={Astro.currentLocale ?? site.lang}
   class="overflow-y-scroll motion-safe:scroll-smooth"
@@ -55,6 +81,7 @@ const rssHref = getAssetPath("rss.xml");
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href={getAssetPath("favicon.svg")} />
     <link rel="canonical" href={canonicalURL} />
+    <style is:inline set:html={paletteStyles}></style>
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="generator" content={Astro.generator} />
 
@@ -143,6 +170,8 @@ const rssHref = getAssetPath("rss.xml");
       })();
     </script>
 
+    {preview && <script is:inline set:html={PREVIEW_BOOT} />}
+
     <ClientRouter />
 
     <CustomHead {title} {description} />
@@ -151,11 +180,14 @@ const rssHref = getAssetPath("rss.xml");
     <slot />
     {
       // After the page head in tree order, so it can anchor to it.
-      ambient !== "none" && <div class="band-light" aria-hidden="true" />
+      (preview || ambient !== "none") && (
+        <div class="band-light" aria-hidden="true" />
+      )
     }
     <script>
       import "@/scripts/theme";
     </script>
+    {preview && <PreviewPanel />}
     <CustomBodyEnd />
   </body>
 </html>

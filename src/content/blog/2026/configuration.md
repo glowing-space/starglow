@@ -54,13 +54,16 @@ Optional `Person` structured data on the homepage: `jobTitle` and `description`.
 
 These keys control the small amount of motion and decoration in the theme. All motion stops under `prefers-reduced-motion`.
 
-| Key            | Default  | What it does                                                                               |
-| :------------- | :------- | :----------------------------------------------------------------------------------------- |
-| `ambient`      | `"none"` | Inner light of the header band: `none`, `light` (static), `breathe` (slow pulse), `dawn`.  |
-| `wordmarkGlow` | `false`  | A soft pulsing glow on the header wordmark.                                                |
-| `statusline`   | `false`  | A vim-style status bar on post and note pages: source path, file type and scroll position. |
+| Key            | Default                                 | What it does                                                                                       |
+| :------------- | :-------------------------------------- | :------------------------------------------------------------------------------------------------- |
+| `ambient`      | `"none"`                                | Inner light of the header band: `none`, `light` (static), `breathe` (slow pulse), `dawn`.          |
+| `wordmarkGlow` | `false`                                 | A soft pulsing glow on the header wordmark.                                                        |
+| `statusline`   | `false`                                 | A vim-style status bar on post and note pages: source path, file type and scroll position.         |
+| `palette`      | `{ dark: "glowing", light: "glowing" }` | The dark and light colour palettes, see [Customising](/blog/2026/customising/).                    |
+| `palettes`     | none                                    | Your own palettes by name, usable in `palette`.                                                    |
+| `preview`      | `false`                                 | A floating panel to switch palettes and effects live, for demos. Changes last one browser session. |
 
-This demo uses `ambient: "breathe"`, `wordmarkGlow: true` and `statusline: true`.
+This demo uses `ambient: "breathe"`, `wordmarkGlow: true`, `statusline: true` and `preview: true`. Turn `preview` off on your own site.
 
 ## links
 

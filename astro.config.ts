@@ -10,6 +10,7 @@ import sitemap from "@astrojs/sitemap";
 import { rehypeHeadingIds, unified } from "@astrojs/markdown-remark";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeCallouts from "rehype-callouts";
+import { createCssVariablesTheme } from "shiki";
 import { rehypeBlockLabels } from "./src/utils/rehypeBlockLabels";
 import { rehypeTableWrapper } from "./src/utils/rehypeTableWrapper";
 import { rehypeTodoMarkers } from "./src/utils/rehypeTodoMarkers";
@@ -102,8 +103,13 @@ export default defineConfig({
       ],
     }),
     shikiConfig: {
-      themes: { light: "catppuccin-latte", dark: "catppuccin-mocha" },
-      defaultColor: false,
+      // Code colours come from the active palette (src/palettes.ts) through
+      // --shiki-* custom properties set in src/styles/site-theme.css.
+      theme: createCssVariablesTheme({
+        name: "starglow",
+        variablePrefix: "--shiki-",
+        fontStyle: true,
+      }),
       wrap: false,
     },
   },

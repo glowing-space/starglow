@@ -13,4 +13,3 @@ Bundled third-party assets keep their own licences:
 - Tabler Icons: MIT (src/assets/icons/socials/LICENSE-tabler-icons.txt)
 - Icon provenance: src/assets/icons/PROVENANCE.md and
   src/assets/icons/socials/PROVENANCE.md
-- Colour palette: Catppuccin (Mocha and Latte), MIT, https://catppuccin.com

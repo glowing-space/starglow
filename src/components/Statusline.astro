@@ -17,7 +17,7 @@ const type = file.endsWith(".mdx") ? "mdx" : "markdown";
 ---
 
 {
-  config.appearance.statusline && file && (
+  (config.appearance.statusline || config.appearance.preview) && file && (
     <div class="statusline" aria-hidden="true" data-pagefind-ignore>
       <span class="statusline-mode">NORMAL</span>
       <span class="statusline-file">{file}</span>

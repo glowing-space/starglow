@@ -1,3 +1,5 @@
+import type { Palette } from "@/palettes";
+
 interface SiteConfig {
   /**
    * Not set here. The site origin is resolved from SITE_URL by astro.config.ts
@@ -110,6 +112,26 @@ interface AppearanceConfig {
    * file type and scroll position. Defaults to false.
    */
   statusline?: boolean;
+  /**
+   * Colour palettes, chosen separately for dark and light mode. Built in:
+   * dark "glowing", "void", "aurora", "ember"; light "glowing", "paper",
+   * "petal", "frost", "sand". Defaults to "glowing" for both.
+   */
+  palette?: { dark?: string; light?: string };
+  /**
+   * Your own palettes, by name, usable in `palette`. Same shape as the
+   * built-in ones in src/palettes.ts; pnpm verify checks their contrast.
+   */
+  palettes?: {
+    dark?: Record<string, Palette>;
+    light?: Record<string, Palette>;
+  };
+  /**
+   * Floating "preview" panel to switch palette, mode, ambient light, glow and
+   * statusline live. For theme demos; changes last for the browser session
+   * only. Defaults to false.
+   */
+  preview?: boolean;
 }
 
 /** Icon and default label of an 88x31 badge. Unknown types get a generic icon. */
@@ -192,7 +214,7 @@ interface FooterConfig {
 /** Theme repository, linked from the footer credit. */
 export const STARGLOW_REPO = "https://github.com/glowing-space/starglow";
 
-interface StarglowConfig {
+export interface StarglowConfig {
   site: SiteConfig;
   /** Optional homepage Person structured data (JSON-LD). Real text only. */
   person?: PersonConfig;
@@ -235,7 +257,16 @@ export interface ResolvedStarglowConfig {
   posts: Required<PostsConfig>;
   features: Required<FeaturesConfig>;
   socials: ResolvedSocialLink[];
-  appearance: Required<AppearanceConfig>;
+  appearance: Required<
+    Pick<
+      AppearanceConfig,
+      "ambient" | "wordmarkGlow" | "statusline" | "preview"
+    >
+  > & {
+    palette: { dark: string; light: string };
+    /** Every palette available to this site: built-in plus custom. */
+    palettes: { dark: Record<string, Palette>; light: Record<string, Palette> };
+  };
   /** Badges with a usable URL: `links` first, then uncovered socials. */
   links: (BadgeLink & { url: string })[];
   footer: Required<FooterConfig>;

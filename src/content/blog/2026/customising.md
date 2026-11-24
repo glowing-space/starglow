@@ -31,20 +31,39 @@ const { post } = Astro.props;
 
 ## Colours
 
-The palette is Catppuccin: Latte for the light theme and Mocha for the dark one, with pink as the accent. Every colour is a CSS variable in `src/styles/site-theme.css`, in one block per theme:
+Colours come in palettes, and dark and light palettes are chosen separately in `starglow.config.ts`:
 
-```css
-[data-theme="dark"] {
-  --background: #1e1e2e;
-  --foreground: #cdd6f4;
-  --accent: #f5c2e7;
-  --border: #45475a;
-}
+```ts
+appearance: {
+  palette: { dark: "glowing", light: "paper" },
+},
 ```
 
-Social images are drawn by satori, which cannot read CSS variables, so their colours are mirrored in `src/utils/ogTheme.ts`. If you change the palette, change both files. The `og-palette` check in `pnpm verify` fails when they drift apart.
+Built in are four dark palettes, `glowing`, `void`, `aurora` and `ember`, and five light ones, `glowing`, `paper`, `petal`, `frost` and `sand`. The demo's preview panel, bottom right, switches between them live.
 
-Keep text contrast at WCAG AA or better when you pick new colours.
+To use your own colours, add a palette under `appearance.palettes` and select it. A palette is 18 colours; everything else (code highlighting, callouts, status colours, badges, social images) is derived from them:
+
+```ts
+appearance: {
+  palette: { dark: "midnight", light: "paper" },
+  palettes: {
+    dark: {
+      midnight: {
+        label: "Midnight",
+        bg: "#0f1117", mantle: "#0b0d12", crust: "#08090d",
+        muted: "#1a1d26", border: "#2a2f3c",
+        fg: "#dde3ee", mutedFg: "#9aa3b5",
+        accent: "#7cc4ff", accentFg: "#0f1117", comment: "#8089a0",
+        red: "#ff8080", orange: "#ffb070", yellow: "#f0d070",
+        green: "#80d890", cyan: "#70d0e0", blue: "#80a8ff",
+        purple: "#c0a0ff", glow: "#7cc4ff",
+      },
+    },
+  },
+},
+```
+
+The fields are documented in `src/palettes.ts`, next to the built-in palettes. `pnpm verify` checks that every shipped palette meets WCAG AA: each text colour on each surface, and the accent foreground on the accent.
 
 ## Type and spacing
 

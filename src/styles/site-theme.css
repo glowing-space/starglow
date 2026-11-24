@@ -3,9 +3,7 @@
  * every component rule of the site design. Upstream theme.css and
  * typography.css stay untouched; this file is imported last in global.css and
  * its component rules are unlayered, so they win over both.
- * Palette: Catppuccin Latte (light) and Mocha (dark), WCAG AA. The only other
- * palette location is src/utils/ogTheme.ts (OG images, where satori cannot
- * read CSS variables).
+ * Palette colours live in src/palettes.ts (WCAG AA checked by pnpm verify).
  */
 
 /* Font tokens: the Astro fonts API (astro.config.ts) exposes --font-inter,
@@ -46,71 +44,47 @@
   --font-weight-extrabold: 600;
 }
 
-/* Light palette (default and [data-theme="light"]) */
-:root,
-[data-theme="light"] {
-  --background: #eff1f5;
-  --foreground: #4c4f69;
-  --accent: #b4237d;
-  --accent-foreground: #eff1f5;
-  --muted: #e6e9ef;
-  --muted-foreground: #5c5f77;
-  --border: #bcc0cc;
-  --mantle: #e6e9ef;
-  --crust: #dce0e8;
-  --yellow: #df8e1d;
-  --code-comment: #5c5f77;
-  --status-active: #2b7a1c;
-  --status-maintained: #1559d1;
-  --status-experiment: #7c2fd6;
-  --status-archived: #5c5f77;
-  --band: var(--crust);
-  --code-bg: var(--mantle);
-  --peach: #fe640b;
-  --blue: #1e66f5;
-  --mauve: #8839ef;
-  --lavender: #7287fd;
-  --sapphire: #209fb5;
-  --sky: #04a5e5;
-  --b-face: #e6e9ef;
-  --b-hi: #ffffff;
-  --b-lo: #9ca0b0;
-  --b-edge: #8c8fa1;
-  --b-icon: #dce0e8;
-  --glow-c: color-mix(in srgb, #ffffff 70%, transparent);
+/*
+ * Palette. The colours themselves come from src/palettes.ts: the layout
+ * writes the active dark and light palette as --background, --foreground,
+ * --accent, --red ... --purple and --glow on <html>. Everything below is
+ * derived from those tokens, so a palette never needs more than its 18 values.
+ */
+:root {
+  --peach: var(--orange);
+  --mauve: var(--purple);
+  --lavender: var(--purple);
+  --sapphire: var(--cyan);
+  --sky: var(--cyan);
+  --status-active: var(--green);
+  --status-maintained: var(--blue);
+  --status-experiment: var(--purple);
+  --status-archived: var(--muted-foreground);
 }
 
-/* Dark palette */
+/* Light mode surfaces (default before the theme script runs) */
+:root,
+[data-theme="light"] {
+  --band: var(--crust);
+  --code-bg: var(--mantle);
+  --b-face: var(--muted);
+  --b-hi: color-mix(in srgb, #ffffff 85%, var(--background));
+  --b-lo: color-mix(in srgb, var(--muted-foreground) 45%, var(--border));
+  --b-edge: color-mix(in srgb, var(--muted-foreground) 60%, var(--border));
+  --b-icon: var(--crust);
+  --glow-c: color-mix(in srgb, var(--glow) 70%, transparent);
+}
+
+/* Dark mode surfaces */
 [data-theme="dark"] {
-  --background: #1e1e2e;
-  --foreground: #cdd6f4;
-  --accent: #f5c2e7;
-  --accent-foreground: #1e1e2e;
-  --muted: #313244;
-  --muted-foreground: #a6adc8;
-  --border: #45475a;
-  --mantle: #181825;
-  --crust: #11111b;
-  --yellow: #f9e2af;
-  --code-comment: #7f849c;
-  --status-active: #a6e3a1;
-  --status-maintained: #89b4fa;
-  --status-experiment: #cba6f7;
-  --status-archived: #a6adc8;
   --band: var(--mantle);
   --code-bg: var(--crust);
-  --peach: #fab387;
-  --blue: #89b4fa;
-  --mauve: #cba6f7;
-  --lavender: #b4befe;
-  --sapphire: #74c7ec;
-  --sky: #89dceb;
-  --b-face: #313244;
-  --b-hi: #45475a;
-  --b-lo: #11111b;
-  --b-edge: #11111b;
-  --b-icon: #1e1e2e;
-  --glow-c: color-mix(in srgb, var(--foreground) 7%, transparent);
+  --b-face: var(--muted);
+  --b-hi: var(--border);
+  --b-lo: var(--crust);
+  --b-edge: var(--crust);
+  --b-icon: var(--background);
+  --glow-c: color-mix(in srgb, var(--glow) 12%, transparent);
 }
 
 /* Band glow tint per ambient mode (see appearance.ambient) */
@@ -140,18 +114,18 @@
   --badge-link: var(--foreground);
 }
 
-/* rehype-callouts GitHub theme variables (light and dark per type) */
+/* rehype-callouts GitHub theme variables, from the active palette */
 :root {
-  --callout-note-color-light: #1559d1;
-  --callout-note-color-dark: #89b4fa;
-  --callout-tip-color-light: #2b7a1c;
-  --callout-tip-color-dark: #a6e3a1;
-  --callout-important-color-light: #7c2fd6;
-  --callout-important-color-dark: #cba6f7;
-  --callout-warning-color-light: #8a5a00;
-  --callout-warning-color-dark: #f9e2af;
-  --callout-caution-color-light: #b80d32;
-  --callout-caution-color-dark: #f38ba8;
+  --callout-note-color-light: var(--blue);
+  --callout-note-color-dark: var(--blue);
+  --callout-tip-color-light: var(--green);
+  --callout-tip-color-dark: var(--green);
+  --callout-important-color-light: var(--purple);
+  --callout-important-color-dark: var(--purple);
+  --callout-warning-color-light: var(--yellow);
+  --callout-warning-color-dark: var(--yellow);
+  --callout-caution-color-light: var(--red);
+  --callout-caution-color-dark: var(--red);
 }
 
 /* Spacing (4px base), measure, text styles and the unfinished-state tint */
@@ -981,14 +955,19 @@ body {
   margin: var(--s5) 0;
 }
 
-/* Catppuccin's comment colours are below AA on the code background */
-html[data-theme="light"]
-  .astro-code
-  span[style*="--shiki-light:#7C7F93;--shiki-light-font-style:italic"],
-html[data-theme="dark"]
-  .astro-code
-  span[style*="--shiki-dark:#9399B2;--shiki-dark-font-style:italic"] {
-  color: var(--code-comment);
+/* Code colours: Shiki's css-variables theme, mapped onto the palette */
+:root {
+  --shiki-foreground: var(--foreground);
+  --shiki-background: var(--code-bg);
+  --shiki-token-constant: var(--orange);
+  --shiki-token-string: var(--green);
+  --shiki-token-comment: var(--code-comment);
+  --shiki-token-keyword: var(--purple);
+  --shiki-token-parameter: var(--foreground);
+  --shiki-token-function: var(--blue);
+  --shiki-token-string-expression: var(--green);
+  --shiki-token-punctuation: var(--muted-foreground);
+  --shiki-token-link: var(--cyan);
 }
 
 /* Tables */
@@ -1489,15 +1468,19 @@ html[data-theme="dark"]
   white-space: nowrap;
 }
 
-body:has(.statusline) {
+html:not([data-statusline]) .statusline {
+  display: none;
+}
+
+html[data-statusline] body:has(.statusline) {
   padding-bottom: var(--statusline-h);
 }
 
-body:has(.statusline) .post-fab {
+html[data-statusline] body:has(.statusline) .post-fab {
   inset-block-end: calc(2rem + var(--statusline-h));
 }
 
-body:has(.statusline) .toc-popover {
+html[data-statusline] body:has(.statusline) .toc-popover {
   inset-block-end: calc(5.5rem + var(--statusline-h));
 }
 
@@ -1560,4 +1543,83 @@ body:has(.statusline) .toc-popover {
 
 .not-found-text {
   margin: 0 0 var(--s3);
+}
+
+[data-ambient="none"] .band-light {
+  display: none;
+}
+
+/* ===== Preview panel (appearance.preview) ===== */
+
+.preview-panel {
+  position: fixed;
+  inset-inline-end: var(--s4);
+  inset-block-end: var(--s4);
+  z-index: 60;
+  border: 1px solid var(--border);
+  background: var(--background);
+  font: var(--t-meta);
+  color: var(--muted-foreground);
+}
+
+html[data-statusline] body:has(.statusline) .preview-panel {
+  inset-block-end: calc(var(--s4) + var(--statusline-h));
+}
+
+.preview-panel summary {
+  padding: var(--s1) var(--s3);
+  cursor: pointer;
+  list-style: none;
+}
+
+.preview-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.preview-panel summary:hover,
+.preview-panel[open] summary {
+  color: var(--accent);
+}
+
+.preview-body {
+  display: grid;
+  gap: var(--s2);
+  min-width: 14rem;
+  padding: var(--s2) var(--s3) var(--s3);
+  border-top: 1px solid var(--border);
+}
+
+.preview-body label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+
+.preview-body .preview-check {
+  justify-content: flex-start;
+  gap: var(--s2);
+}
+
+.preview-body select,
+.preview-body button {
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--muted);
+  color: var(--foreground);
+  font: var(--t-meta);
+  padding: 0 var(--s1);
+}
+
+.preview-body input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+.preview-body button {
+  justify-self: start;
+  cursor: pointer;
+}
+
+.preview-body button:hover {
+  color: var(--accent);
 }

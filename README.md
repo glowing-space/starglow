@@ -1,7 +1,7 @@
 # Starglow
 
 A minimal, developer-flavoured Astro theme for blogs, notes and projects.
-Dark first, Catppuccin colours, a little 2000s glow.
+Dark first, its own colour palettes, a little 2000s glow.
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset=".github/assets/screenshot-light.png">
@@ -17,7 +17,8 @@ Dark first, Catppuccin colours, a little 2000s glow.
 - Labelled code, table and callout blocks; GitHub alert callouts; MDX
 - Vim-style statusline on posts, 88x31 footer badges, a terminal 404 page
 - Pagefind search, RSS, sitemap, generated Open Graph images, JSON-LD
-- Light and dark mode (Catppuccin Latte and Mocha), WCAG AA, reduced motion respected
+- 4 dark and 5 light palettes, chosen separately; your own in a few lines; WCAG AA checked at build
+- A live preview panel for demos: palette, ambient light, glow, statusline
 - Almost no client JavaScript; plain static `dist/` for any host
 - One typed config file, `starglow.config.ts`
 - Build checks: every route, canonical URL, search index and link is asserted after each build
@@ -60,7 +61,8 @@ The full list, authoring rules and the config reference are in
 | ------------------------------ | ---------------------------------------------- |
 | Title, author, socials, badges | `starglow.config.ts`                           |
 | Header glow, statusline        | `appearance` in `starglow.config.ts`           |
-| Colours, fonts, spacing        | `src/styles/site-theme.css`                    |
+| Colours                        | `appearance.palette` / `palettes`              |
+| Fonts, spacing                 | `src/styles/site-theme.css`                    |
 | Extra `<head>` tags, analytics | `src/custom/Head.astro`                        |
 | Comments or a bio under posts  | `src/custom/PostEnd.astro`                     |
 | The footer credit              | `footer.credit: false` in `starglow.config.ts` |
@@ -82,11 +84,13 @@ first; security issues go through [SECURITY.md](SECURITY.md).
 
 ## Credits
 
+<img alt="glowing.space" src=".github/assets/glowing-space.png" width="228">
+
 Made by [Andrii Filiurskyi](https://github.com/filiurskyi), a
 [glowing.space](https://glowing.space) project.
 
 Originally based on [AstroPaper](https://github.com/satnaing/astro-paper) by
-Sat Naing. Colours from [Catppuccin](https://catppuccin.com). Fonts: Inter,
+Sat Naing. The glowing palette takes its colours from the glowing.space logo. Fonts: Inter,
 JetBrains Mono and Pixelify Sans (SIL OFL). See [NOTICE](NOTICE).
 
 ## Licence
