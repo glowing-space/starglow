@@ -5,7 +5,7 @@ Dark first, its own colour palettes, a little 2000s glow.
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset=".github/assets/home-light.png">
-  <img alt="starglow home page: a banded header with a pixel wordmark, an intro and a list of posts" src=".github/assets/home-dark.png">
+  <img alt="Home page of the demo site: a pixel wordmark, a short intro and a list of posts and notes" src=".github/assets/home-dark.png">
 </picture>
 
 **[Live demo](https://starglow.glowing.space)** · [Docs](docs/) · [Releases](https://github.com/glowing-space/starglow/releases)
@@ -25,9 +25,9 @@ Dark first, its own colour palettes, a little 2000s glow.
 
 ## Screenshots
 
-| Dark                                                                                      | Light                                                                                       |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| ![Code blocks with labels and syntax colours, void palette](.github/assets/post-dark.png) | ![Code blocks with labels and syntax colours, paper palette](.github/assets/post-light.png) |
+| Dark                                                                                                         | Light                                                          |
+| ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| ![A post with a dithered image, a caption and a GLSL code block, void palette](.github/assets/post-dark.png) | ![The same post, paper palette](.github/assets/post-light.png) |
 
 ![The same home page in the aurora, ember, petal and sand palettes](.github/assets/palettes.png)
 
