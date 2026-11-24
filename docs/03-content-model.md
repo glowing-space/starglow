@@ -1,10 +1,4 @@
----
-title: The content model
-description: Posts, notes, projects and pages, where each one lives, its frontmatter and how drafts and placeholders work.
-pubDatetime: 2026-11-09T10:00:00+01:00
-modDatetime: 2026-11-20T10:00:00+01:00
-tags: [docs, content]
----
+# The content model
 
 Everything you write is Markdown in `src/content/`. There are four collections. Their schemas are in `src/content.config.ts`, and they are strict: an unknown or misspelled frontmatter key fails `astro check`.
 
@@ -28,18 +22,18 @@ The filename must be lowercase kebab-case, and the folder year must match the ye
 
 ### Optional post fields
 
-| Field          | Notes                                                                |
-| :------------- | :------------------------------------------------------------------- |
-| `modDatetime`  | Shown as "Updated" when later than `pubDatetime`. This post has one. |
-| `tags`         | Free labels. Each tag gets a page under `/tags/`.                    |
-| `draft`        | `true` keeps the post out of production builds.                      |
-| `hideToc`      | Hides the table of contents on this post.                            |
-| `hideEditPost` | Hides the edit link when `features.editPost` is enabled.             |
-| `ogImage`      | A custom social image next to the post. Default: a generated one.    |
-| `canonicalUrl` | Where the post was first published.                                  |
-| `syndication`  | Other places the post was published, shown as an "Also on" line.     |
-| `timezone`     | IANA zone for this post's dates.                                     |
-| `author`       | Defaults to `site.author`.                                           |
+| Field          | Notes                                                             |
+| :------------- | :---------------------------------------------------------------- |
+| `modDatetime`  | Shown as "Updated" when later than `pubDatetime`.                 |
+| `tags`         | Free labels. Each tag gets a page under `/tags/`.                 |
+| `draft`        | `true` keeps the post out of production builds.                   |
+| `hideToc`      | Hides the table of contents on the post.                          |
+| `hideEditPost` | Hides the edit link when `features.editPost` is enabled.          |
+| `ogImage`      | A custom social image next to the post. Default: a generated one. |
+| `canonicalUrl` | Where the post was first published.                               |
+| `syndication`  | Other places the post was published, shown as an "Also on" line.  |
+| `timezone`     | IANA zone for the post's dates.                                   |
+| `author`       | Defaults to `site.author`.                                        |
 
 A post with a `pubDatetime` in the future is built only from that day on.
 
@@ -96,4 +90,4 @@ In a page body a marker renders as a highlighted `TODO:` note, so you can spot i
 
 #### Showing the syntax
 
-Markers inside code spans and code blocks are ignored, which is how this post can show one.
+Markers inside code spans and code blocks are ignored.

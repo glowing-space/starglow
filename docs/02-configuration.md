@@ -1,13 +1,8 @@
----
-title: Configuring starglow
-description: Every key in starglow.config.ts, what it changes and its default.
-pubDatetime: 2026-11-05T10:00:00+01:00
-tags: [docs, config]
----
+# Configuring starglow
 
 All site settings live in one typed file, `starglow.config.ts`, at the root of the repository. It is wrapped in `defineStarglowConfig()`, so your editor completes the keys and `astro check` reports a wrong type. The types and their comments are in `src/types/config.ts`, and the defaults are applied in `src/config.ts`.
 
-The site URL is not in this file. It comes from `SITE_URL`, see [Getting started](/blog/2026/getting-started/).
+The site URL is not in this file. It comes from `SITE_URL`, see [Getting started](./01-getting-started.md).
 
 ## site
 
@@ -59,11 +54,11 @@ These keys control the small amount of motion and decoration in the theme. All m
 | `ambient`      | `"none"`                           | Inner light of the header band: `none`, `light` (static), `breathe` (slow pulse), `dawn`.          |
 | `wordmarkGlow` | `false`                            | A soft pulsing glow on the header wordmark.                                                        |
 | `statusline`   | `false`                            | A vim-style status bar on post and note pages: source path, file type and scroll position.         |
-| `palette`      | `{ dark: "void", light: "paper" }` | The dark and light colour palettes, see [Customising](/blog/2026/customising/).                    |
+| `palette`      | `{ dark: "void", light: "paper" }` | The dark and light colour palettes, see [Customising](./05-customising.md).                        |
 | `palettes`     | none                               | Your own palettes by name, usable in `palette`.                                                    |
 | `preview`      | `false`                            | A floating panel to switch palettes and effects live, for demos. Changes last one browser session. |
 
-This demo uses `ambient: "breathe"`, `wordmarkGlow: true`, `statusline: true` and `preview: true`. Turn `preview` off on your own site.
+The demo site uses `ambient: "breathe"`, `wordmarkGlow: true`, `statusline: true` and `preview: true`. Turn `preview` off on your own site.
 
 ## links
 

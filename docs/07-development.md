@@ -1,11 +1,6 @@
----
-title: Development, checks and CI
-description: Every dev.sh command, the native setup, what CI checks and how to keep the pinned tools current.
-pubDatetime: 2026-11-22T10:00:00+01:00
-tags: [docs, setup]
----
+# Development, checks and CI
 
-The commands and checks behind a starglow site. [Getting started](/blog/2026/getting-started/) has the short version.
+The commands and checks behind a starglow site. [Getting started](./01-getting-started.md) has the short version.
 
 ## Docker
 
@@ -20,7 +15,7 @@ The commands and checks behind a starglow site. [Getting started](/blog/2026/get
 | `./dev.sh ci`                    | The pull-request check set: format, lint, `astro check`, build, offline link check, dist checks |
 | `./dev.sh links`                 | Offline link and anchor check over an existing `dist/` (lychee)                                 |
 | `./dev.sh workflows`             | Audits `.github/` with actionlint and zizmor                                                    |
-| `./dev.sh new <type> <slug>`     | Scaffolds a draft post, note or project, see [The content model](/blog/2026/content-model/)     |
+| `./dev.sh new <type> <slug>`     | Scaffolds a draft post, note or project, see [The content model](./03-content-model.md)         |
 | `./dev.sh pnpm verify`           | Runs the assertions over an existing `dist/` (`pnpm verify`)                                    |
 | `./dev.sh pnpm markers`          | Lists unfilled `[[TODO: …]]` markers (`pnpm markers`)                                           |
 | `./dev.sh pnpm markers --strict` | The same list, failing while any marker remains (what the deploy runs; needs a built `dist/`)   |
@@ -85,4 +80,4 @@ Replace the old `tag@sha256:…` reference with the printed one. Keep the lychee
 
 ## Environment variables
 
-`SITE_URL`, `PUBLIC_GOOGLE_SITE_VERIFICATION` and `MARKERS_STRICT` are listed in [Configuring starglow](/blog/2026/configuration/#environment-variables).
+`SITE_URL`, `PUBLIC_GOOGLE_SITE_VERIFICATION` and `MARKERS_STRICT` are listed in [Configuring starglow](./02-configuration.md#environment-variables).

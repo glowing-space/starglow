@@ -8,7 +8,7 @@ Dark first, its own colour palettes, a little 2000s glow.
   <img alt="starglow home page: a banded header with a pixel wordmark, an intro and a list of posts" src=".github/assets/home-dark.png">
 </picture>
 
-**[Live demo](https://starglow.glowing.space)** · [Docs](https://starglow.glowing.space/blog/) · [Releases](https://github.com/glowing-space/starglow/releases)
+**[Live demo](https://starglow.glowing.space)** · [Docs](docs/) · [Releases](https://github.com/glowing-space/starglow/releases)
 
 ## Features
 
@@ -60,10 +60,11 @@ Then:
 | `pnpm verify`  | Assertions over `dist/`                               |
 | `./dev.sh ci`  | Every CI check locally, in Docker                     |
 
-The docs are the demo site's own posts, also readable in
-[`src/content/blog/2026/`](src/content/blog/2026/): [configuration](https://starglow.glowing.space/blog/2026/configuration/),
-[content model](https://starglow.glowing.space/blog/2026/content-model/), [development and CI](https://starglow.glowing.space/blog/2026/development/),
-[deploying](https://starglow.glowing.space/blog/2026/deploying/).
+Guides live in [`docs/`](docs/): [getting started](docs/01-getting-started.md),
+[configuration](docs/02-configuration.md), [content model](docs/03-content-model.md),
+[writing](docs/04-writing.md), [customising](docs/05-customising.md),
+[removing features](docs/06-removing-features.md),
+[development and CI](docs/07-development.md), [deploying](docs/08-deploying.md).
 
 ## Customise
 

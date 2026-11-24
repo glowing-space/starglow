@@ -1,11 +1,6 @@
----
-title: Customising starglow
-description: The three slot files that are yours, the colour and type tokens, the fonts, and what the build checks for you.
-pubDatetime: 2026-11-12T10:00:00+01:00
-tags: [docs, design]
----
+# Customising starglow
 
-Most changes need no theme code at all: the config file covers the switches, and three slot files cover your own markup. This post covers what to edit when you want more.
+Most changes need no theme code at all: the config file covers the switches, and three slot files cover your own markup. This guide covers what to edit when you want more.
 
 ## Slot files
 

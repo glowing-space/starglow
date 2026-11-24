@@ -21,7 +21,7 @@ pnpm dev          # http://localhost:4321
 ```
 
 Or, with only Docker on the host, `./dev.sh`. See
-[the development post](src/content/blog/2026/development.md) for every command.
+[docs/07-development.md](docs/07-development.md) for every command.
 
 ## Before you open a pull request
 

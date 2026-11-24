@@ -1,9 +1,4 @@
----
-title: Deploying to GitHub Pages
-description: The one-time repository settings to make before the first push, and what the deploy workflow checks.
-pubDatetime: 2026-11-23T10:00:00+01:00
-tags: [docs, setup]
----
+# Deploying to GitHub Pages
 
 The included `deploy.yml` publishes `dist/` to GitHub Pages on every push to `main`. Other static hosts work too: build command `pnpm build`, output directory `dist`.
 
