@@ -1333,9 +1333,12 @@ body {
 .site-footer .credit {
   font: var(--t-badge);
   font-size: 15px;
+  color: inherit;
+  text-shadow: 0 0 6px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.site-footer .credit:hover {
   color: var(--accent);
-  text-decoration: underline 1px;
-  text-underline-offset: 3px;
 }
 
 /* ===== Search (Pagefind UI) on /search/ ===== */
