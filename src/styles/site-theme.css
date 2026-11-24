@@ -1,9 +1,7 @@
 /*
- * Site theme: the single place for palette, type scale, weights, spacing and
- * every component rule of the site design. Upstream theme.css and
+ * Site design: tokens and every component rule. Upstream theme.css and
  * typography.css stay untouched; this file is imported last in global.css and
- * its component rules are unlayered, so they win over both.
- * Palette colours live in src/palettes.ts (WCAG AA checked by pnpm verify).
+ * its rules are unlayered, so they win over both. Colours: src/palettes.ts.
  */
 
 /* Font tokens: the Astro fonts API (astro.config.ts) exposes --font-inter,
@@ -1330,6 +1328,14 @@ body {
 
 .site-footer a:hover {
   color: var(--accent);
+}
+
+.site-footer .credit {
+  font: var(--t-badge);
+  font-size: 15px;
+  color: var(--accent);
+  text-decoration: underline 1px;
+  text-underline-offset: 3px;
 }
 
 /* ===== Search (Pagefind UI) on /search/ ===== */

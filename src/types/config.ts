@@ -51,9 +51,8 @@ interface PostsConfig {
   /** Posts shown on the index/home page */
   perIndex?: number;
   /**
-   * @deprecated No longer has any effect. Publishing is day-granular: a post is
-   * listed from the start of its `pubDatetime` day in the site timezone, so
-   * there is no sub-day boundary left for a margin to cover. Safe to remove.
+   * @deprecated Has no effect: a post is listed from the start of its
+   * `pubDatetime` day in the site timezone. Safe to remove.
    */
   scheduledPostMargin?: number;
 }
@@ -67,10 +66,7 @@ interface FeaturesConfig {
    * for the default layout OG image (build fails if missing).
    */
   dynamicOgImage?: boolean;
-  /**
-   * @deprecated No longer has any effect: starglow has no archives page (the
-   * blog index lists every post). Safe to remove.
-   */
+  /** @deprecated Has no effect: there is no archives page. Safe to remove. */
   showArchives?: boolean;
   /** Show back button on post detail pages. Defaults to true. */
   showBackButton?: boolean;
@@ -114,8 +110,8 @@ interface AppearanceConfig {
   statusline?: boolean;
   /**
    * Colour palettes, chosen separately for dark and light mode. Built in:
-   * dark "glowing", "void", "aurora", "ember"; light "glowing", "paper",
-   * "petal", "frost", "sand". Defaults to "glowing" for both.
+   * dark "void", "aurora", "ember"; light "paper", "petal", "frost",
+   * "sand". Defaults to "void" and "paper".
    */
   palette?: { dark?: string; light?: string };
   /**
@@ -177,9 +173,7 @@ export type SocialName =
   | "medium";
 
 export interface SocialLink {
-  /**
-   * Selects the icon: "github" → src/assets/icons/socials/github.svg
-   */
+  /** Selects the icon: "github" → src/assets/icons/socials/github.svg */
   name: SocialName;
   /** Visible and accessible service name, e.g. "GitHub", "DEV.to". */
   label: string;
@@ -272,10 +266,7 @@ export interface ResolvedStarglowConfig {
   footer: Required<FooterConfig>;
 }
 
-/**
- * Type helper for starglow.config.ts.
- * Provides full IntelliSense without any runtime overhead.
- */
+/** Type helper for starglow.config.ts. */
 export function defineStarglowConfig(config: StarglowConfig): StarglowConfig {
   return config;
 }

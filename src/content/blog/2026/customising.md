@@ -35,11 +35,11 @@ Colours come in palettes, and dark and light palettes are chosen separately in `
 
 ```ts
 appearance: {
-  palette: { dark: "glowing", light: "paper" },
+  palette: { dark: "aurora", light: "paper" },
 },
 ```
 
-Built in are four dark palettes, `glowing`, `void`, `aurora` and `ember`, and five light ones, `glowing`, `paper`, `petal`, `frost` and `sand`. The demo's preview panel, bottom right, switches between them live.
+Built in are three dark palettes, `void`, `aurora` and `ember`, and four light ones, `paper`, `petal`, `frost` and `sand`. The demo's preview panel, bottom right, switches between them live.
 
 To use your own colours, add a palette under `appearance.palettes` and select it. A palette is 18 colours; everything else (code highlighting, callouts, status colours, badges, social images) is derived from them:
 

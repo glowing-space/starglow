@@ -1,9 +1,4 @@
-/**
- * Internal resolved configuration used throughout the codebase.
- *
- * Prefer editing `starglow.config.ts` instead of this file. This module exists to
- * apply defaults and expose a fully-resolved config shape (`ResolvedStarglowConfig`).
- */
+/** Resolved config with defaults applied. Edit `starglow.config.ts`, not this file. */
 import userConfig from "@/starglow.config";
 import type {
   BadgeLink,
@@ -15,10 +10,8 @@ import type {
 import { darkPalettes, lightPalettes } from "./palettes";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 
-// public/default-og.jpg is intentionally absent (upstream branding, deleted).
-// It is only reachable when `dynamicOgImage` is false; with the default
-// `dynamicOgImage: true` the generated /og.png is used. Keep that feature on,
-// or add a real image at this path first.
+// public/default-og.jpg is intentionally absent. It is only used when
+// `dynamicOgImage` is false; add a real image here before turning that off.
 const DEFAULT_OG_IMAGE = "default-og.jpg";
 
 /**
@@ -117,8 +110,8 @@ function resolvePalettes(appearance: StarglowConfig["appearance"]) {
     light: { ...lightPalettes, ...appearance?.palettes?.light },
   };
   const palette = {
-    dark: appearance?.palette?.dark ?? "glowing",
-    light: appearance?.palette?.light ?? "glowing",
+    dark: appearance?.palette?.dark ?? "void",
+    light: appearance?.palette?.light ?? "paper",
   };
   for (const mode of ["dark", "light"] as const) {
     if (!(palette[mode] in palettes[mode])) {
@@ -171,7 +164,7 @@ const config: ResolvedStarglowConfig = {
   posts: {
     perPage: userConfig.posts?.perPage ?? 4,
     perIndex: userConfig.posts?.perIndex ?? 4,
-    // Deprecated and unused. Not read from userConfig, so builds don't warn about it.
+    // Deprecated. Not read from userConfig, so builds don't warn about it.
     scheduledPostMargin: 15 * 60 * 1000,
   },
   features: {
