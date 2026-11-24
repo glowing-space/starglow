@@ -65,11 +65,6 @@
 [data-theme="light"] {
   --band: var(--crust);
   --code-bg: var(--mantle);
-  --b-face: var(--muted);
-  --b-hi: color-mix(in srgb, #ffffff 85%, var(--background));
-  --b-lo: color-mix(in srgb, var(--muted-foreground) 45%, var(--border));
-  --b-edge: color-mix(in srgb, var(--muted-foreground) 60%, var(--border));
-  --b-icon: var(--crust);
   --glow-c: color-mix(in srgb, var(--glow) 70%, transparent);
 }
 
@@ -77,11 +72,6 @@
 [data-theme="dark"] {
   --band: var(--mantle);
   --code-bg: var(--crust);
-  --b-face: var(--muted);
-  --b-hi: var(--border);
-  --b-lo: var(--crust);
-  --b-edge: var(--crust);
-  --b-icon: var(--background);
   --glow-c: color-mix(in srgb, var(--glow) 12%, transparent);
 }
 
@@ -94,22 +84,29 @@
   --glow-c: color-mix(in srgb, var(--accent) 10%, #ffffff 40%);
 }
 
-/* Icon colour of each 88x31 badge type */
+/* 88x31 badges are self-coloured, like the originals: the same in every
+   palette and mode. */
 :root {
-  --badge-github: var(--foreground);
-  --badge-gitlab: var(--peach);
-  --badge-codeberg: var(--blue);
-  --badge-srht: var(--foreground);
-  --badge-linkedin: var(--sapphire);
-  --badge-mastodon: var(--mauve);
-  --badge-bluesky: var(--sky);
-  --badge-stack: var(--peach);
-  --badge-hackaday: var(--yellow);
-  --badge-crates: var(--peach);
-  --badge-email: var(--lavender);
-  --badge-rss: var(--peach);
-  --badge-sparkle: var(--yellow);
-  --badge-link: var(--foreground);
+  --b-face: #24232e;
+  --b-hi: #5c5a70;
+  --b-lo: #0e0d14;
+  --b-edge: #050508;
+  --b-icon: #121119;
+  --b-text: #e9e7f2;
+  --badge-github: #f0eff5;
+  --badge-gitlab: #fc8a4a;
+  --badge-codeberg: #6fa8ff;
+  --badge-srht: #f0eff5;
+  --badge-linkedin: #4fb0f0;
+  --badge-mastodon: #9a8cff;
+  --badge-bluesky: #4ea7ff;
+  --badge-stack: #f8922f;
+  --badge-hackaday: #f5d03a;
+  --badge-crates: #ff9a52;
+  --badge-email: #c9b8ff;
+  --badge-rss: #ffa040;
+  --badge-sparkle: #ffd75e;
+  --badge-link: #f0eff5;
 }
 
 /* rehype-callouts GitHub theme variables, from the active palette */
@@ -1310,7 +1307,7 @@ body {
   font: var(--t-badge);
   font-feature-settings: normal;
   font-variant-ligatures: none;
-  fill: var(--foreground);
+  fill: var(--b-text);
 }
 
 .b88:hover {
@@ -1319,7 +1316,7 @@ body {
 }
 
 .b88:hover .b88-text {
-  fill: var(--accent);
+  fill: #ffffff;
 }
 
 .site-footer a {
