@@ -1,0 +1,5 @@
+# zizmor suggests `uses: $/...` for the local action; actionlint 1.7.12 rejects
+# that syntax. Re-enable this rule when actionlint supports it.
+rules:
+  self-repository:
+    disable: true

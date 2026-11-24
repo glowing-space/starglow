@@ -1,0 +1,23 @@
+name: Feature request
+description: Suggest a change. Please start a discussion first for large ideas.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What are you trying to do that Starglow makes hard?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: How it could work, including any new config key.
+  - type: checkboxes
+    id: fit
+    attributes:
+      label: Fit
+      options:
+        - label: It works without client-side JavaScript, or the JavaScript is optional.
+        - label: It can be switched off in the config.

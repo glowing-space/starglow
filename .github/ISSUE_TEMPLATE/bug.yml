@@ -1,0 +1,40 @@
+name: Bug report
+description: Something in Starglow does not work as documented.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected and what you saw instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: A minimal config or content file that shows the problem helps most.
+      placeholder: |
+        1. Set `appearance.ambient: "dawn"`
+        2. Run `pnpm build`
+        3. …
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Starglow version or commit
+      placeholder: v1.0.0 or a commit SHA
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Node version, OS, browser if it is a rendering issue.
+      placeholder: Node 22.23, Ubuntu 24.04, Firefox 150
+  - type: textarea
+    id: logs
+    attributes:
+      label: Build output or console errors
+      render: shell

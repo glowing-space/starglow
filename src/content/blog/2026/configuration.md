@@ -1,0 +1,102 @@
+---
+title: Configuring Starglow
+description: Every key in starglow.config.ts, what it changes and its default.
+pubDatetime: 2026-11-05T10:00:00+01:00
+tags: [docs, config]
+---
+
+All site settings live in one typed file, `starglow.config.ts`, at the root of the repository. It is wrapped in `defineStarglowConfig()`, so your editor completes the keys and `astro check` reports a wrong type. The types and their comments are in `src/types/config.ts`, and the defaults are applied in `src/config.ts`.
+
+The site URL is not in this file. It comes from `SITE_URL`, see [Getting started](/blog/2026/getting-started/).
+
+## site
+
+| Key                | Required | Default         | What it does                                                                           |
+| :----------------- | :------- | :-------------- | :------------------------------------------------------------------------------------- |
+| `title`            | yes      |                 | Site title in the header, page titles and meta tags.                                   |
+| `description`      | yes      |                 | Default meta description and RSS description.                                          |
+| `author`           | yes      |                 | Default author of posts.                                                               |
+| `profile`          | no       | none            | Author profile URL, used in structured data.                                           |
+| `sourceUrl`        | no       | none            | Source repository of the site, linked from the footer. Empty means no link.            |
+| `wordmark`         | no       | `title`         | Text of the header wordmark, set in the pixel font.                                    |
+| `sourceBanner`     | no       | none            | An HTML comment with `art` and `message` lines, printed at the top of every page.      |
+| `ogImage`          | no       | generated image | Fallback social image filename in `public/`. Only needed with `dynamicOgImage: false`. |
+| `lang`             | no       | `"en"`          | The `lang` attribute of every page.                                                    |
+| `timezone`         | no       | `"UTC"`         | IANA zone used to read and show post dates.                                            |
+| `dir`              | no       | `"ltr"`         | Text direction: `ltr`, `rtl` or `auto`.                                                |
+| `fediverseCreator` | no       | none            | Handle as `@user@instance`. Adds the `fediverse:creator` meta tag.                     |
+
+The `sourceBanner` text ends up inside an HTML comment, so it must not contain two hyphens in a row, start with `>` or end with `-`. The build fails with a clear message if it does.
+
+## person
+
+Optional `Person` structured data on the homepage: `jobTitle` and `description`. Empty fields are left out. Placeholder text fails the build, because structured data should only carry real information.
+
+## posts
+
+| Key        | Default | What it does                                                                                      |
+| :--------- | :------ | :------------------------------------------------------------------------------------------------ |
+| `perPage`  | `4`     | Posts per page on paginated lists.                                                                |
+| `perIndex` | `4`     | Featured projects on the homepage. The latest-writing list (posts and notes) shows twice as many. |
+
+## features
+
+| Key                | Default      | What it does                                                                                   |
+| :----------------- | :----------- | :--------------------------------------------------------------------------------------------- |
+| `lightAndDarkMode` | `true`       | The light and dark toggle. The first visit follows the system preference.                      |
+| `dynamicOgImage`   | `true`       | Generated social images per post, note and project, plus `/og.png`.                            |
+| `showBackButton`   | `true`       | The back link on posts and inner pages.                                                        |
+| `editPost`         | disabled     | `{ enabled: true, url: "https://github.com/you/repo/edit/main/" }` adds an edit link to posts. |
+| `search`           | `"pagefind"` | Full-text search on `/search/`. `false` removes it.                                            |
+| `toc`              | `true`       | A table of contents on posts with two or more `h2` or `h3` headings.                           |
+
+## appearance
+
+These keys control the small amount of motion and decoration in the theme. All motion stops under `prefers-reduced-motion`.
+
+| Key            | Default  | What it does                                                                               |
+| :------------- | :------- | :----------------------------------------------------------------------------------------- |
+| `ambient`      | `"none"` | Inner light of the header band: `none`, `light` (static), `breathe` (slow pulse), `dawn`.  |
+| `wordmarkGlow` | `false`  | A soft pulsing glow on the header wordmark.                                                |
+| `statusline`   | `false`  | A vim-style status bar on post and note pages: source path, file type and scroll position. |
+
+This demo uses `ambient: "breathe"`, `wordmarkGlow: true` and `statusline: true`.
+
+## links
+
+Small 88x31 badges under the footer, one line of text and an icon each:
+
+```ts
+links: [
+  { type: "rss", url: "/rss.xml" },
+  { type: "github", url: "https://github.com/you" },
+  { type: "email", url: "mailto:you@example.com" },
+],
+```
+
+Known types with their own icon: `github`, `gitlab`, `codeberg`, `srht`, `linkedin`, `mastodon`, `bluesky`, `stack`, `hackaday`, `crates`, `email`, `rss` and `sparkle`. Any other type gets a generic link icon. A `url` may be `http(s)`, `mailto:` or a site path starting with `/`. Optional `label` and `title` override the badge text and the tooltip.
+
+Every configured social profile without a badge of its own gets one automatically.
+
+## socials
+
+```ts
+socials: [
+  { name: "github", label: "GitHub", url: "https://github.com/you" },
+  { name: "mastodon", label: "Mastodon", url: "" },
+],
+```
+
+Profiles appear on `/contact/`, in the footer badges and in the homepage structured data (`sameAs`). An empty `url` renders nowhere, so you can keep unused slots in the file. Supported names: `github`, `linkedin`, `mastodon`, `bluesky`, `lemmy`, `x`, `reddit`, `devto` and `medium`.
+
+## footer
+
+`footer.credit` shows "powered by `starglow`" in the footer, linked to the theme repository. It is on by default. Set it to `false` to remove the line. Keeping it is a nice way to say thanks.
+
+## Environment variables
+
+| Variable                          | What it does                                                                 |
+| :-------------------------------- | :--------------------------------------------------------------------------- |
+| `SITE_URL`                        | The site origin.                                                             |
+| `PUBLIC_GOOGLE_SITE_VERIFICATION` | Optional Search Console token, used when `site.googleVerification` is empty. |
+| `MARKERS_STRICT`                  | `true` makes the placeholder check fail instead of warn.                     |

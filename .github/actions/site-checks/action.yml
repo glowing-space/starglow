@@ -1,0 +1,49 @@
+name: Site checks
+description: Install, format check, lint, astro check, build, link check, dist assertions, placeholder marker check
+inputs:
+  strict-markers:
+    description: Fail when [[TODO markers remain ("true" for deploy)
+    required: false
+    default: "false"
+runs:
+  using: composite
+  steps:
+    - name: Set up pnpm (version from packageManager)
+      uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+    - name: Set up Node.js
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      with:
+        node-version-file: .node-version
+        package-manager-cache: false
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile
+    - name: Format check
+      shell: bash
+      run: pnpm run format:check
+    - name: Lint
+      shell: bash
+      run: pnpm run lint
+    - name: Astro check
+      shell: bash
+      run: pnpm exec astro check
+    - name: Build (astro build + Pagefind)
+      shell: bash
+      run: pnpm run build:site
+    - name: Internal link check (offline)
+      uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+      with:
+        # Explicit, so a lychee-action bump cannot change the lychee version.
+        # Keep equal to LYCHEE_IMAGE in dev.sh (0.24.2).
+        lycheeVersion: v0.24.2
+        # Flags live in lychee.toml (shared with ./dev.sh links); only the root differs.
+        args: --root-dir ${{ github.workspace }}/dist './dist/**/*.html'
+        fail: true
+    - name: Verify dist output
+      shell: bash
+      run: node scripts/verify-dist.ts
+    - name: Placeholder marker check
+      shell: bash
+      env:
+        MARKERS_STRICT: ${{ inputs.strict-markers }}
+      run: node scripts/check-markers.ts
