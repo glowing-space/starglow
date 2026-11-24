@@ -1,6 +1,6 @@
 ---
 title: Home
-specialties: ["Astro", "Markdown", "Static", "Palettes"]
+specialties: ["Generative art", "GLSL", "Pixel art", "Plotters"]
 ---
 
-starglow is a minimal Astro theme for a personal site with a blog, short notes and a list of projects. It is designed dark first, ships its own colour palettes and has a little 2000s glow. The posts on this demo are its documentation.
+Hi, I am Mira. I make pictures with code: flow fields, dithered shaders, small pixel art games and drawings on a pen plotter. This is where I write down how they work, so I can find it again and so you can borrow it.

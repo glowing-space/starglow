@@ -6,11 +6,11 @@ import { defineStarglowConfig } from "./src/types/config";
 export default defineStarglowConfig({
   site: {
     // Header, <title> and feeds. Used by: Layout, Header, rss.xml, OG images.
-    title: "starglow",
+    title: "mirasol",
     description:
-      "A minimal, developer-flavoured Astro theme for blogs, notes and projects.",
+      "Mira Solvik makes pictures with code: generative art, shaders, pixel art and pen plots.",
     // Default post author and the footer copyright name.
-    author: "starglow",
+    author: "Mira Solvik",
     // Author profile URL, used in structured data.
     profile: "https://github.com/glowing-space",
     // Source repository of your site, linked from the footer. Empty = no link.
@@ -22,7 +22,7 @@ export default defineStarglowConfig({
     // Fediverse handle as @user@instance. Empty = no fediverse:creator meta.
     fediverseCreator: "",
     // Header wordmark in the pixel face. Defaults to title.
-    wordmark: "starglow",
+    wordmark: "mirasol",
     // Printed as an HTML comment at the top of every page, for people who
     // read the source. Text only; it must not contain two hyphens in a row.
     // Remove the whole key for no comment.
@@ -41,7 +41,11 @@ export default defineStarglowConfig({
     },
   },
   // Optional homepage Person structured data. Empty fields are left out.
-  person: { jobTitle: "", description: "" },
+  person: {
+    jobTitle: "Creative coder",
+    description:
+      "A fictional creative coder who writes about generative art, GLSL shaders, pixel art and pen plotters.",
+  },
   posts: {
     perPage: 10,
     perIndex: 4,

@@ -1,10 +1,10 @@
 ---
 title: Contact
-description: Where to report a bug, ask a question or suggest a change.
+description: How to reach Mira about a sketch, a project or a print.
 ---
 
-starglow is developed in the open at [github.com/glowing-space/starglow](https://github.com/glowing-space/starglow).
+The easiest way to reach me is email: `hello@example.com`. I read everything and answer most things within a week.
 
-- Found a bug? Open an issue with steps to reproduce it.
-- Have a question or an idea? Start a discussion.
-- Want to change something? Pull requests are welcome; please open an issue first for larger changes.
+- Found a bug in one of my tools? Tell me which version and what you expected to happen.
+- Made something with one of my sketches? I would love to see it.
+- Want a plot or a print? Ask, but I only plot a few a month.
