@@ -23,7 +23,9 @@ keeps working. A key that is removed or renamed is first marked
 
 ## How to upgrade
 
-Add the theme as a remote once:
+If you cloned starglow as in the README, the `starglow` remote is already
+there. Sites created another way (the npm template, "Use this template") add
+it once:
 
 ```sh
 git remote add starglow https://github.com/glowing-space/starglow.git
@@ -33,8 +35,8 @@ Then, for each release:
 
 ```sh
 git fetch starglow --tags
-git merge --allow-unrelated-histories vX.Y.Z   # first time only needs the flag
-./dev.sh ci                                    # or: pnpm install && pnpm build
+git merge vX.Y.Z    # add --allow-unrelated-histories the first time, for sites not cloned from starglow
+./dev.sh ci         # or: pnpm install && pnpm build
 ```
 
 Resolve conflicts in favour of your version for the files above, and of the

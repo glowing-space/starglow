@@ -33,9 +33,13 @@ Dark first, its own colour palettes, a little 2000s glow.
 
 ## Quick start
 
+Clone starglow and keep it as a second remote, so theme updates stay one
+merge away:
+
 ```sh
-npm create astro@latest -- --template glowing-space/starglow
-cd <your-site>
+git clone https://github.com/glowing-space/starglow.git my-site
+cd my-site
+git remote rename origin starglow
 pnpm install
 pnpm dev            # http://localhost:4321
 ```
@@ -46,9 +50,34 @@ host.
 Then:
 
 1. Set your details in [`starglow.config.ts`](starglow.config.ts).
-2. Set your origin: `SITE_URL=https://example.com pnpm build` (or in `.env`).
-3. Replace the example posts in `src/content/` with your own.
-   `./dev.sh new post my-first-post` scaffolds one.
+2. Replace the example posts, notes and projects in `src/content/` with your
+   own. `./dev.sh new post my-first-post` scaffolds one.
+
+## Publish to `<username>.github.io`
+
+1. On GitHub, create an empty repository named `<username>.github.io`.
+2. Settings → Pages → Source: **GitHub Actions**.
+3. Settings → Secrets and variables → Actions → Variables: add `SITE_URL`
+   with `https://<username>.github.io`.
+4. Push:
+
+   ```sh
+   git remote add origin https://github.com/<username>/<username>.github.io.git
+   git push -u origin main
+   ```
+
+The included workflow builds, checks and deploys on every push to `main`.
+The full checklist is in [docs/08-deploying.md](docs/08-deploying.md).
+
+## Update the theme
+
+```sh
+git fetch starglow
+git merge starglow/main
+```
+
+Conflicts only come up in files you changed. Keep your changes in the files
+starglow never overwrites, listed in [UPGRADING.md](UPGRADING.md).
 
 ## Commands
 

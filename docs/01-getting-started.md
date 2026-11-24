@@ -10,13 +10,15 @@ starglow is an Astro theme for a personal site with a blog, short notes and a pr
 
 ## Create the site
 
-Start from the template:
+Clone starglow and keep it as a remote named `starglow`, so you can merge theme updates later:
 
 ```bash
-npm create astro@latest -- --template glowing-space/starglow
+git clone https://github.com/glowing-space/starglow.git my-site
+cd my-site
+git remote rename origin starglow
 ```
 
-Or use the "Use this template" button on GitHub and clone your copy.
+`npm create astro@latest -- --template glowing-space/starglow` and GitHub's "Use this template" button also work, but they copy the files without starglow's history, so every later update starts with a large merge.
 
 ## Run it locally
 
