@@ -18,7 +18,7 @@ starglow is an Astro 7 + Tailwind 4 static theme. Read this before changing it.
 ## Recipes
 
 - **Add a post:** `./dev.sh new post <slug>` → `src/content/blog/<year>/<slug>.md`; the folder year must match `pubDatetime`.
-- **Add a config option:** add it with JSDoc to `src/types/config.ts`, a default in `src/config.ts`, the key to `starglow.config.ts`, a row in `docs/DEVELOPMENT.md` and a CHANGELOG line.
+- **Add a config option:** add it with JSDoc to `src/types/config.ts`, a default in `src/config.ts`, the key to `starglow.config.ts`, a row in `src/content/blog/2026/configuration.md` and a `breaking`, `enhancement` or `bug` label on the pull request (release notes are generated from labels).
 - **Add a badge icon:** a bitmap in `src/utils/badges.ts` and a `--badge-<type>` colour token.
 - **Change the design:** keep the type scale (13/14/16/20/32), the 4px grid, 1px borders and zero radius; `verify-dist` checks the type scale.
 

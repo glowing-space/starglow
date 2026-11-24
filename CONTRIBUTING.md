@@ -21,7 +21,7 @@ pnpm dev          # http://localhost:4321
 ```
 
 Or, with only Docker on the host, `./dev.sh`. See
-[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) for every command.
+[the development post](src/content/blog/2026/development.md) for every command.
 
 ## Before you open a pull request
 
@@ -33,8 +33,9 @@ Run the same checks as CI:
 
 Natively: `pnpm format:check && pnpm lint && pnpm build && pnpm verify`.
 
-Add a line under `## [Unreleased]` in [CHANGELOG.md](CHANGELOG.md) for any
-user-visible change. If it breaks an existing site, add upgrade steps to
+Release notes are generated on GitHub from pull request labels, so label
+user-visible changes `enhancement`, `bug` or `documentation`. If a change
+breaks an existing site, label it `breaking` and add upgrade steps to
 [UPGRADING.md](UPGRADING.md).
 
 ## Commit messages

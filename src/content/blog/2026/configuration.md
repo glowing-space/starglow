@@ -54,14 +54,14 @@ Optional `Person` structured data on the homepage: `jobTitle` and `description`.
 
 These keys control the small amount of motion and decoration in the theme. All motion stops under `prefers-reduced-motion`.
 
-| Key            | Default                                 | What it does                                                                                       |
-| :------------- | :-------------------------------------- | :------------------------------------------------------------------------------------------------- |
-| `ambient`      | `"none"`                                | Inner light of the header band: `none`, `light` (static), `breathe` (slow pulse), `dawn`.          |
-| `wordmarkGlow` | `false`                                 | A soft pulsing glow on the header wordmark.                                                        |
-| `statusline`   | `false`                                 | A vim-style status bar on post and note pages: source path, file type and scroll position.         |
-| `palette`      | `{ dark: "glowing", light: "glowing" }` | The dark and light colour palettes, see [Customising](/blog/2026/customising/).                    |
-| `palettes`     | none                                    | Your own palettes by name, usable in `palette`.                                                    |
-| `preview`      | `false`                                 | A floating panel to switch palettes and effects live, for demos. Changes last one browser session. |
+| Key            | Default                            | What it does                                                                                       |
+| :------------- | :--------------------------------- | :------------------------------------------------------------------------------------------------- |
+| `ambient`      | `"none"`                           | Inner light of the header band: `none`, `light` (static), `breathe` (slow pulse), `dawn`.          |
+| `wordmarkGlow` | `false`                            | A soft pulsing glow on the header wordmark.                                                        |
+| `statusline`   | `false`                            | A vim-style status bar on post and note pages: source path, file type and scroll position.         |
+| `palette`      | `{ dark: "void", light: "paper" }` | The dark and light colour palettes, see [Customising](/blog/2026/customising/).                    |
+| `palettes`     | none                               | Your own palettes by name, usable in `palette`.                                                    |
+| `preview`      | `false`                            | A floating panel to switch palettes and effects live, for demos. Changes last one browser session. |
 
 This demo uses `ambient: "breathe"`, `wordmarkGlow: true`, `statusline: true` and `preview: true`. Turn `preview` off on your own site.
 
@@ -103,3 +103,10 @@ Profiles appear on `/contact/`, in the footer badges and in the homepage structu
 | `SITE_URL`                        | The site origin.                                                             |
 | `PUBLIC_GOOGLE_SITE_VERIFICATION` | Optional Search Console token, used when `site.googleVerification` is empty. |
 | `MARKERS_STRICT`                  | `true` makes the placeholder check fail instead of warn.                     |
+
+Set a variable in the shell (`SITE_URL=https://example.org ./dev.sh build`) or copy `.env.example` to `.env` and uncomment or add the line (copying alone changes nothing, because the lines ship commented out). A variable set in the shell wins over `.env`.
+
+- `SITE_URL` must be an origin only. A value with a path, query or hash fails the build with an error message.
+- `PUBLIC_GOOGLE_SITE_VERIFICATION` is public by design, because it ends up in the HTML, but it belongs in the environment and never in a committed file. An empty value renders no meta tag. Compose forwards it, like `SITE_URL`, into the container.
+- `MARKERS_STRICT` is not forwarded into the container, and `scripts/check-markers.ts` never reads `.env`. Locally, use `./dev.sh pnpm markers --strict` instead.
+- The marker check also reads `GITHUB_ACTIONS`, which GitHub sets on its runners, to print one annotation per marker.

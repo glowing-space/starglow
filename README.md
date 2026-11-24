@@ -4,11 +4,11 @@ A minimal, developer-flavoured Astro theme for blogs, notes and projects.
 Dark first, its own colour palettes, a little 2000s glow.
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset=".github/assets/screenshot-light.png">
-  <img alt="starglow home page: a banded header with a pixel wordmark, an intro and a list of posts" src=".github/assets/screenshot-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset=".github/assets/home-light.png">
+  <img alt="starglow home page: a banded header with a pixel wordmark, an intro and a list of posts" src=".github/assets/home-dark.png">
 </picture>
 
-**[Live demo](https://starglow.glowing.space)** · [Docs](https://starglow.glowing.space/blog/) · [Changelog](CHANGELOG.md)
+**[Live demo](https://starglow.glowing.space)** · [Docs](https://starglow.glowing.space/blog/) · [Releases](https://github.com/glowing-space/starglow/releases)
 
 ## Features
 
@@ -17,11 +17,19 @@ Dark first, its own colour palettes, a little 2000s glow.
 - Labelled code, table and callout blocks; GitHub alert callouts; MDX
 - Vim-style statusline on posts, 88x31 footer badges, a terminal 404 page
 - Pagefind search, RSS, sitemap, generated Open Graph images, JSON-LD
-- 4 dark and 5 light palettes, chosen separately; your own in a few lines; WCAG AA checked at build
+- 3 dark and 4 light palettes, chosen separately; your own in a few lines; WCAG AA checked at build
 - A live preview panel for demos: palette, ambient light, glow, statusline
 - Almost no client JavaScript; plain static `dist/` for any host
 - One typed config file, `starglow.config.ts`
 - Build checks: every route, canonical URL, search index and link is asserted after each build
+
+## Screenshots
+
+| Dark                                                                                      | Light                                                                                       |
+| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| ![Code blocks with labels and syntax colours, void palette](.github/assets/post-dark.png) | ![Code blocks with labels and syntax colours, paper palette](.github/assets/post-light.png) |
+
+![The same home page in the aurora, ember, petal and sand palettes](.github/assets/palettes.png)
 
 ## Quick start
 
@@ -52,8 +60,10 @@ Then:
 | `pnpm verify`  | Assertions over `dist/`                               |
 | `./dev.sh ci`  | Every CI check locally, in Docker                     |
 
-The full list, authoring rules and the config reference are in
-[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
+The docs are the demo site's own posts, also readable in
+[`src/content/blog/2026/`](src/content/blog/2026/): [configuration](https://starglow.glowing.space/blog/2026/configuration/),
+[content model](https://starglow.glowing.space/blog/2026/content-model/), [development and CI](https://starglow.glowing.space/blog/2026/development/),
+[deploying](https://starglow.glowing.space/blog/2026/deploying/).
 
 ## Customise
 
@@ -90,7 +100,7 @@ Made by [Andrii Filiurskyi](https://github.com/filiurskyi), a
 [glowing.space](https://glowing.space) project.
 
 Originally based on [AstroPaper](https://github.com/satnaing/astro-paper) by
-Sat Naing. The glowing palette takes its colours from the glowing.space logo. Fonts: Inter,
+Sat Naing. Fonts: Inter,
 JetBrains Mono and Pixelify Sans (SIL OFL). See [NOTICE](NOTICE).
 
 ## Licence

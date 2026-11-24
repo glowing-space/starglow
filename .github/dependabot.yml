@@ -7,7 +7,7 @@ updates:
     cooldown:
       default-days: 7
     ignore:
-      # `astro check` refuses TypeScript 7 (see FORK-NOTES.md, Upgrade cautions).
+      # `astro check` refuses TypeScript 7.
       - dependency-name: typescript
         update-types: ["version-update:semver-major"]
     groups:

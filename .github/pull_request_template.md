@@ -5,6 +5,6 @@
 ## Checklist
 
 - [ ] `./dev.sh ci` passes (or `pnpm format:check && pnpm lint && pnpm build && pnpm verify`)
-- [ ] User-visible change noted in `CHANGELOG.md` under Unreleased
+- [ ] Labelled `breaking`, `enhancement`, `bug` or `documentation` (release notes come from labels)
 - [ ] Breaking change: upgrade steps added to `UPGRADING.md`
 - [ ] Screenshots for visual changes, dark and light
