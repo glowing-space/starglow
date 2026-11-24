@@ -17,7 +17,7 @@ Dark first, its own colour palettes, a little 2000s glow.
 - Labelled code, table and callout blocks; GitHub alert callouts; MDX
 - Vim-style statusline on posts, 88x31 footer badges, a terminal 404 page
 - Pagefind search, RSS, sitemap, generated Open Graph images, JSON-LD
-- 3 dark and 4 light palettes, chosen separately; your own in a few lines; WCAG AA checked at build
+- 4 dark and 5 light palettes, chosen separately; your own in a few lines; WCAG AA checked at build
 - A live preview panel for demos: palette, ambient light, glow, statusline
 - Almost no client JavaScript; plain static `dist/` for any host
 - One typed config file, `starglow.config.ts`
@@ -25,11 +25,11 @@ Dark first, its own colour palettes, a little 2000s glow.
 
 ## Screenshots
 
-| Dark                                                                                                         | Light                                                          |
-| ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
-| ![A post with a dithered image, a caption and a GLSL code block, void palette](.github/assets/post-dark.png) | ![The same post, paper palette](.github/assets/post-light.png) |
+| Dark                                                                                                             | Light                                                                   |
+| ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| ![A post with a dithered image, a caption and a GLSL code block, starglow palette](.github/assets/post-dark.png) | ![The same post, starglow light palette](.github/assets/post-light.png) |
 
-![The same home page in the aurora, ember, petal and sand palettes](.github/assets/palettes.png)
+![The same home page in the void, aurora, paper and sand palettes](.github/assets/palettes.png)
 
 ## Quick start
 

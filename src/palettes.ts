@@ -40,6 +40,27 @@ export interface Palette {
 }
 
 export const darkPalettes = {
+  starglow: {
+    label: "Starglow",
+    bg: "#120f1f",
+    mantle: "#0d0b17",
+    crust: "#09070f",
+    muted: "#1d1932",
+    border: "#342a5c",
+    fg: "#e8e3f6",
+    mutedFg: "#a79fc4",
+    accent: "#f78ed6",
+    accentFg: "#120f1f",
+    comment: "#8f87ad",
+    red: "#ff7f9a",
+    orange: "#ffb07a",
+    yellow: "#f3d88a",
+    green: "#15c2a5",
+    cyan: "#5fcde4",
+    blue: "#8fa2ff",
+    purple: "#c79be0",
+    glow: "#342a97",
+  },
   void: {
     label: "Void",
     bg: "#0b0d10",
@@ -106,6 +127,27 @@ export const darkPalettes = {
 } satisfies Record<string, Palette>;
 
 export const lightPalettes = {
+  starglow: {
+    label: "Starglow",
+    bg: "#fbf8ff",
+    mantle: "#f3eefb",
+    crust: "#ebe4f7",
+    muted: "#efe9f8",
+    border: "#d5cbe8",
+    fg: "#261f3b",
+    mutedFg: "#5d5478",
+    accent: "#b0237f",
+    accentFg: "#fbf8ff",
+    comment: "#6a6285",
+    red: "#b3263f",
+    orange: "#a34c12",
+    yellow: "#7a5a00",
+    green: "#117472",
+    cyan: "#0e6f88",
+    blue: "#342a97",
+    purple: "#76428a",
+    glow: "#fbe3f4",
+  },
   paper: {
     label: "Paper",
     bg: "#ffffff",

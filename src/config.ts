@@ -110,8 +110,8 @@ function resolvePalettes(appearance: StarglowConfig["appearance"]) {
     light: { ...lightPalettes, ...appearance?.palettes?.light },
   };
   const palette = {
-    dark: appearance?.palette?.dark ?? "void",
-    light: appearance?.palette?.light ?? "paper",
+    dark: appearance?.palette?.dark ?? "starglow",
+    light: appearance?.palette?.light ?? "starglow",
   };
   for (const mode of ["dark", "light"] as const) {
     if (!(palette[mode] in palettes[mode])) {

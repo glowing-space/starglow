@@ -49,14 +49,14 @@ Optional `Person` structured data on the homepage: `jobTitle` and `description`.
 
 These keys control the small amount of motion and decoration in the theme. All motion stops under `prefers-reduced-motion`.
 
-| Key            | Default                            | What it does                                                                                       |
-| :------------- | :--------------------------------- | :------------------------------------------------------------------------------------------------- |
-| `ambient`      | `"none"`                           | Inner light of the header band: `none`, `light` (static), `breathe` (slow pulse), `dawn`.          |
-| `wordmarkGlow` | `false`                            | A soft pulsing glow on the header wordmark.                                                        |
-| `statusline`   | `false`                            | A vim-style status bar on post and note pages: source path, file type and scroll position.         |
-| `palette`      | `{ dark: "void", light: "paper" }` | The dark and light colour palettes, see [Customising](./05-customising.md).                        |
-| `palettes`     | none                               | Your own palettes by name, usable in `palette`.                                                    |
-| `preview`      | `false`                            | A floating panel to switch palettes and effects live, for demos. Changes last one browser session. |
+| Key            | Default                                   | What it does                                                                                       |
+| :------------- | :---------------------------------------- | :------------------------------------------------------------------------------------------------- |
+| `ambient`      | `"none"`                                  | Inner light of the header band: `none`, `light` (static), `breathe` (slow pulse), `dawn`.          |
+| `wordmarkGlow` | `false`                                   | A soft pulsing glow on the header wordmark.                                                        |
+| `statusline`   | `false`                                   | A vim-style status bar on post and note pages: source path, file type and scroll position.         |
+| `palette`      | `{ dark: "starglow", light: "starglow" }` | The dark and light colour palettes, see [Customising](./05-customising.md).                        |
+| `palettes`     | none                                      | Your own palettes by name, usable in `palette`.                                                    |
+| `preview`      | `false`                                   | A floating panel to switch palettes and effects live, for demos. Changes last one browser session. |
 
 The demo site uses `ambient: "breathe"`, `wordmarkGlow: true`, `statusline: true` and `preview: true`. Turn `preview` off on your own site.
 

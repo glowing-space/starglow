@@ -110,8 +110,8 @@ interface AppearanceConfig {
   statusline?: boolean;
   /**
    * Colour palettes, chosen separately for dark and light mode. Built in:
-   * dark "void", "aurora", "ember"; light "paper", "petal", "frost",
-   * "sand". Defaults to "void" and "paper".
+   * dark "starglow", "void", "aurora", "ember"; light "starglow", "paper",
+   * "petal", "frost", "sand". Defaults to "starglow" for both.
    */
   palette?: { dark?: string; light?: string };
   /**
