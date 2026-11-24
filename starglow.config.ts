@@ -1,16 +1,16 @@
 import { defineStarglowConfig } from "./src/types/config";
 
-// Starglow theme configuration. Every key is documented in src/types/config.ts
-// (hover it in your editor) and in the "Configuring Starglow" post.
+// starglow theme configuration. Every key is documented in src/types/config.ts
+// (hover it in your editor) and in the "Configuring starglow" post.
 // The site origin is not set here: astro.config.ts reads it from SITE_URL.
 export default defineStarglowConfig({
   site: {
     // Header, <title> and feeds. Used by: Layout, Header, rss.xml, OG images.
-    title: "Starglow",
+    title: "starglow",
     description:
       "A minimal, developer-flavoured Astro theme for blogs, notes and projects.",
     // Default post author and the footer copyright name.
-    author: "Starglow",
+    author: "starglow",
     // Author profile URL, used in structured data.
     profile: "https://github.com/glowing-space",
     // Source repository of your site, linked from the footer. Empty = no link.

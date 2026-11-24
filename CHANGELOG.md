@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Starglow are listed here. The format follows
+All notable changes to starglow are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/). Breaking changes always come with
 upgrade steps in [UPGRADING.md](UPGRADING.md).

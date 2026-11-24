@@ -1,12 +1,12 @@
-# Upgrading Starglow
+# Upgrading starglow
 
-Starglow is a template: your site is a copy of the theme, and upgrades are
-merged into it. Keep your changes in the places Starglow never overwrites,
+starglow is a template: your site is a copy of the theme, and upgrades are
+merged into it. Keep your changes in the places starglow never overwrites,
 and an upgrade stays a small, reviewable diff.
 
 ## Files that are yours
 
-Starglow never changes these after release:
+starglow never changes these after release:
 
 | File                       | Use it for                                          |
 | -------------------------- | --------------------------------------------------- |

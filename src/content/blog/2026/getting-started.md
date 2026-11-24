@@ -1,11 +1,11 @@
 ---
-title: Getting started with Starglow
+title: Getting started with starglow
 description: Create a site from the template, run it locally, set your site URL and publish the static build.
 pubDatetime: 2026-11-02T10:00:00+01:00
 tags: [docs, setup]
 ---
 
-Starglow is an Astro theme for a personal site with a blog, short notes and a project list. This post takes you from an empty folder to a built site.
+starglow is an Astro theme for a personal site with a blog, short notes and a project list. This post takes you from an empty folder to a built site.
 
 ## Requirements
 
@@ -52,11 +52,11 @@ The site origin has exactly one source: the `SITE_URL` environment variable, rea
 SITE_URL=https://example.com pnpm build
 ```
 
-You can also put `SITE_URL=https://example.com` in a local `.env` file. For the included GitHub Pages workflow, add a repository variable named `SITE_URL` (Settings, Secrets and variables, Actions, Variables). When the variable is not set anywhere, the default at the top of `astro.config.ts` is used. The value must be an origin only: no path, query or hash. Starglow does not support an Astro `base` path, so host it at the root of a domain or subdomain.
+You can also put `SITE_URL=https://example.com` in a local `.env` file. For the included GitHub Pages workflow, add a repository variable named `SITE_URL` (Settings, Secrets and variables, Actions, Variables). When the variable is not set anywhere, the default at the top of `astro.config.ts` is used. The value must be an origin only: no path, query or hash. starglow does not support an Astro `base` path, so host it at the root of a domain or subdomain.
 
 ## Make it yours
 
-1. Edit `starglow.config.ts`: title, author, description, timezone, socials. See [Configuring Starglow](/blog/2026/configuration/).
+1. Edit `starglow.config.ts`: title, author, description, timezone, socials. See [Configuring starglow](/blog/2026/configuration/).
 2. Replace the pages in `src/content/pages/` (home intro, about, contact).
 3. Delete the example posts, notes and projects, then add your own. See [The content model](/blog/2026/content-model/).
 

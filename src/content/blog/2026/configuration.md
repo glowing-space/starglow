@@ -1,5 +1,5 @@
 ---
-title: Configuring Starglow
+title: Configuring starglow
 description: Every key in starglow.config.ts, what it changes and its default.
 pubDatetime: 2026-11-05T10:00:00+01:00
 tags: [docs, config]

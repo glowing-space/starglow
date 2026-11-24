@@ -4,7 +4,7 @@ description: How to switch off search, generated images, motion, the statusline,
 pubDatetime: 2026-11-21T10:00:00+01:00
 ---
 
-Starglow keeps its extras behind switches, so a smaller site is mostly a config change. This post has no tags on purpose, so it also shows a post without a tag row.
+starglow keeps its extras behind switches, so a smaller site is mostly a config change. This post has no tags on purpose, so it also shows a post without a tag row.
 
 ## Config switches
 

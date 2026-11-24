@@ -1,6 +1,6 @@
 # Icon provenance
 
-Most SVG files in this directory are unchanged AstroPaper icons. One was added by Starglow.
+Most SVG files in this directory are unchanged AstroPaper icons. One was added by starglow.
 
 | File           | Source                                                                        | License                                           |
 | -------------- | ----------------------------------------------------------------------------- | ------------------------------------------------- |

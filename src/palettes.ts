@@ -1,5 +1,5 @@
 /**
- * Starglow colour palettes. Dark and light palettes are separate: pick one of
+ * starglow colour palettes. Dark and light palettes are separate: pick one of
  * each with `appearance.palette` in starglow.config.ts, or add your own with
  * `appearance.palettes`. This file is the only place palette colours live;
  * the CSS custom properties, the Shiki code colours and the OG images all

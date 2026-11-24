@@ -1,6 +1,6 @@
 # Social icon provenance
 
-Six of the SVG files in this directory were added by Starglow. The other SVG files are unchanged AstroPaper icons.
+Six of the SVG files in this directory were added by starglow. The other SVG files are unchanged AstroPaper icons.
 
 | File                                                      | Source                                                                                       | License                             |
 | --------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------- |

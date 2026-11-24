@@ -1,6 +1,6 @@
 # Security policy
 
-Starglow builds a static site, so most issues are in the build tooling, the
+starglow builds a static site, so most issues are in the build tooling, the
 GitHub workflows or the small amount of client JavaScript it ships.
 
 ## Supported versions

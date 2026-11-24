@@ -20,7 +20,7 @@ import { existsSync } from "node:fs";
 import config from "./starglow.config";
 
 // Single source of the site origin. Override per build with SITE_URL (shell or
-// .env); the default is the Starglow demo origin; set your own.
+// .env); the default is the starglow demo origin; set your own.
 if (existsSync(".env")) process.loadEnvFile(".env");
 const SITE_URL = process.env.SITE_URL || "https://starglow.glowing.space";
 

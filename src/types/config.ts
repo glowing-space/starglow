@@ -68,7 +68,7 @@ interface FeaturesConfig {
    */
   dynamicOgImage?: boolean;
   /**
-   * @deprecated No longer has any effect: Starglow has no archives page (the
+   * @deprecated No longer has any effect: starglow has no archives page (the
    * blog index lists every post). Safe to remove.
    */
   showArchives?: boolean;

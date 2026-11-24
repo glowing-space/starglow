@@ -1,9 +1,9 @@
 ---
 title: About
-description: What Starglow is, who makes it and where it comes from.
+description: What starglow is, who makes it and where it comes from.
 ---
 
-Starglow is an open-source Astro theme for developers who want a quiet, fast personal site: Markdown in git, plain static HTML, almost no client JavaScript.
+starglow is an open-source Astro theme for developers who want a quiet, fast personal site: Markdown in git, plain static HTML, almost no client JavaScript.
 
 ## What you get
 
@@ -14,4 +14,4 @@ Starglow is an open-source Astro theme for developers who want a quiet, fast per
 
 ## Credits
 
-Starglow is made by Andrii Filiurskyi as a glowing.space project. It was originally based on [AstroPaper](https://github.com/satnaing/astro-paper) by Sat Naing. It is released under the MIT License, and the bundled fonts under the SIL Open Font License.
+starglow is made by Andrii Filiurskyi as a glowing.space project. It was originally based on [AstroPaper](https://github.com/satnaing/astro-paper) by Sat Naing. It is released under the MIT License, and the bundled fonts under the SIL Open Font License.

@@ -1,10 +1,10 @@
-Starglow
+starglow
 Copyright (c) 2026 Andrii Filiurskyi
 A glowing.space project: https://github.com/glowing-space/starglow
 
-Starglow was originally derived from AstroPaper v7.2.1 (commit 217c4e3) by
+starglow was originally derived from AstroPaper v7.2.1 (commit 217c4e3) by
 Sat Naing, https://github.com/satnaing/astro-paper, MIT License. The
-AstroPaper copyright notice is kept in LICENSE. Starglow does not track
+AstroPaper copyright notice is kept in LICENSE. starglow does not track
 AstroPaper releases; fixes are picked up selectively.
 
 Bundled third-party assets keep their own licences:

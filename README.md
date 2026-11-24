@@ -1,11 +1,11 @@
-# Starglow
+# starglow
 
 A minimal, developer-flavoured Astro theme for blogs, notes and projects.
 Dark first, its own colour palettes, a little 2000s glow.
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset=".github/assets/screenshot-light.png">
-  <img alt="Starglow home page: a banded header with a pixel wordmark, an intro and a list of posts" src=".github/assets/screenshot-dark.png">
+  <img alt="starglow home page: a banded header with a pixel wordmark, an intro and a list of posts" src=".github/assets/screenshot-dark.png">
 </picture>
 
 **[Live demo](https://starglow.glowing.space)** · [Docs](https://starglow.glowing.space/blog/) · [Changelog](CHANGELOG.md)

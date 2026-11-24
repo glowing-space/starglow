@@ -1,5 +1,5 @@
 ---
-title: Customising Starglow
+title: Customising starglow
 description: The three slot files that are yours, the colour and type tokens, the fonts, and what the build checks for you.
 pubDatetime: 2026-11-12T10:00:00+01:00
 tags: [docs, design]

@@ -1,6 +1,6 @@
-# Starglow: notes for AI coding agents
+# starglow: notes for AI coding agents
 
-Starglow is an Astro 7 + Tailwind 4 static theme. Read this before changing it.
+starglow is an Astro 7 + Tailwind 4 static theme. Read this before changing it.
 
 ## Commands
 

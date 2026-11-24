@@ -1,6 +1,6 @@
-# Contributing to Starglow
+# Contributing to starglow
 
-Thanks for helping. Starglow is a small theme with a strong opinion about
+Thanks for helping. starglow is a small theme with a strong opinion about
 staying minimal, so please open an issue before a large change or a new
 feature: it saves both of us time.
 

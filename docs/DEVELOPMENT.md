@@ -1,6 +1,6 @@
-# Starglow: development and reference
+# starglow: development and reference
 
-The full reference for working on a Starglow site: commands, checks, authoring rules and configuration. The [README](../README.md) has the short version, and the example posts on the demo site walk through the same topics.
+The full reference for working on a starglow site: commands, checks, authoring rules and configuration. The [README](../README.md) has the short version, and the example posts on the demo site walk through the same topics.
 
 ## Development
 
@@ -156,7 +156,7 @@ Project template fields:
 - Files whose name starts with `_` are not content. Images and other assets can live next to posts, for example in `src/content/blog/2026/_assets/`.
 - Notes are one file per note at `src/content/notes/YYYY/<slug>.md` and are served at `/notes/YYYY/<slug>/`. Their dates come from the file's git history unless `updated` is set. Squashing the history to one commit gives every note that commit's date.
 - Projects are one file per project at `src/content/projects/<slug>.md` and are served at `/projects/<slug>/`. Every project is listed on `/projects/`, and projects with status `experiment` are also listed on `/lab/`.
-- Drafts (`draft: true`) are listed and served only by the dev server, with a "Draft" badge. They are excluded from production builds, including the sitemap, RSS feed, tag pages and search index. The example posts, notes and projects that ship with Starglow are published; delete or replace them.
+- Drafts (`draft: true`) are listed and served only by the dev server, with a "Draft" badge. They are excluded from production builds, including the sitemap, RSS feed, tag pages and search index. The example posts, notes and projects that ship with starglow are published; delete or replace them.
 - The `.vscode/starglow.code-snippets` file provides a `frontmatter` snippet for VS Code.
 
 ### Callouts and code
